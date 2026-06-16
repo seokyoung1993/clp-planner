@@ -57,7 +57,6 @@
 
   main { max-width: 1040px; margin: 0 auto; padding: 32px 24px; }
 
-  /* Upload zone */
   .upload-section { margin-bottom: 28px; }
   .upload-zone {
     border: 1.5px dashed var(--border-strong);
@@ -75,7 +74,6 @@
   .upload-zone p { color: var(--text-2); font-size: 13px; }
   .upload-zone strong { color: var(--text); font-weight: 500; }
 
-  /* Column mapper */
   .mapper-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -92,7 +90,6 @@
   }
   .mapper-field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-  /* Preview table */
   .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 10px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: 12px; }
   thead tr { background: var(--bg); }
@@ -111,7 +108,6 @@
   .badge-double-fr { background: #FDF4FF; color: #701A75; border: 1px solid #E879F9; }
   .badge-bulk { background: var(--danger-bg); color: var(--danger); font-weight: 700; }
 
-  /* Run button */
   .btn-row { display: flex; gap: 10px; align-items: center; margin-bottom: 28px; }
   .btn-primary {
     padding: 10px 24px; background: var(--accent); color: #fff;
@@ -127,7 +123,6 @@
   }
   .btn-secondary:hover { background: var(--bg); }
 
-  /* Results */
   .result-section { display: none; }
   .result-section.show { display: block; }
 
@@ -169,13 +164,9 @@
   .fill-low { background: #EF4444; }
 
   .oog-table-wrap { overflow-x: auto; }
-
   .hint { font-size: 11px; color: var(--text-3); margin-top: 10px; padding: 8px 12px; background: var(--bg); border-radius: 6px; }
-
-  /* Hidden */
   .hidden { display: none !important; }
 
-  /* Steps indicator */
   .steps { display: flex; align-items: center; gap: 0; margin-bottom: 24px; }
   .step { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
   .step.active { color: var(--accent); font-weight: 500; }
@@ -218,10 +209,22 @@
       <p><strong>엑셀 파일을 여기에 드롭</strong>하거나 클릭해서 업로드</p>
       <p style="margin-top:6px; font-size:12px; color:var(--text-3);">.xlsx · .xls · .csv 지원 | Packing List 파일</p>
     </div>
-    <p style="font-size:12px; color:var(--text-3); margin-top:10px; text-align:center;">
-      샘플 데이터로 먼저 테스트해보려면 →
-      <button onclick="loadSample()" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:12px; text-decoration:underline;">샘플 PL 불러오기</button>
-    </p>
+    <div style="margin-top:12px; display:flex; flex-direction:column; align-items:center; gap:8px;">
+      <p style="font-size:12px; color:var(--text-3);">
+        샘플 데이터로 먼저 테스트해보려면 →
+        <button onclick="loadSample()" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:12px; text-decoration:underline;">샘플 PL 불러오기</button>
+      </p>
+      <div style="display:flex; align-items:center; gap:8px; padding:10px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 12.5V14h12v-1.5M8 2v8m0 0L5 7m3 3l3-3" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span style="font-size:12px; color:var(--text-2);">Packing List 양식이 없으시다면 →</span>
+        <a id="formDownloadLink" download="CLP_Packing_List_Form.xlsx"
+           style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:underline; cursor:pointer;">
+          CLP Packing List Form 다운로드
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Step 2: Mapping + Preview -->
@@ -231,14 +234,12 @@
       <p style="font-size:12px; color:var(--text-2); margin-bottom:14px;">감지된 컬럼을 CLP 계산에 필요한 필드에 연결해주세요. 자동 매핑 결과를 확인하고 수정하세요.</p>
       <div class="mapper-grid" id="mapperGrid"></div>
     </div>
-
     <div class="table-wrap">
       <table id="previewTable">
         <thead id="previewHead"></thead>
         <tbody id="previewBody"></tbody>
       </table>
     </div>
-
     <div class="btn-row">
       <button class="btn-primary" id="calcBtn" onclick="runCalc()">CLP 계산 실행</button>
       <button class="btn-secondary" onclick="resetAll()">다시 업로드</button>
@@ -247,30 +248,21 @@
 
   <!-- Step 3: Results -->
   <div class="result-section" id="resultSection">
-
     <div class="result-grid" id="statCards"></div>
-
     <div class="result-card">
       <h3><span class="section-dot dot-blue"></span>추천 컨테이너 플랜</h3>
       <div class="container-plan" id="containerPlan"></div>
       <div id="rateSection" style="margin-top:16px;"></div>
       <p class="hint" id="planHint"></p>
     </div>
-
     <div class="result-card" id="oogCard" style="display:none;">
       <h3><span class="section-dot dot-orange"></span>OOG 화물 — 선적 방식 판정</h3>
       <div class="oog-table-wrap">
         <table id="oogTable">
           <thead>
             <tr>
-              <th>Item</th>
-              <th>L (mm)</th>
-              <th>W (mm)</th>
-              <th>H (mm)</th>
-              <th>G.W (kg)</th>
-              <th>초과 항목</th>
-              <th>선적 방식</th>
-              <th>Remark</th>
+              <th>Item</th><th>L (mm)</th><th>W (mm)</th><th>H (mm)</th>
+              <th>G.W (kg)</th><th>초과 항목</th><th>선적 방식</th><th>Remark</th>
             </tr>
           </thead>
           <tbody id="oogBody"></tbody>
@@ -278,31 +270,20 @@
       </div>
       <p class="hint">판정 기준: ① 일반 컨테이너 → ② OT(높이만 초과) → ③ 20'FR → ④ 40'FR → ⑤ 40'FR×2(선사 협의) → ⑥ Breakbulk</p>
     </div>
-
     <div class="result-card">
       <h3><span class="section-dot dot-blue"></span>화물 상세 — 컨테이너 배정 결과</h3>
       <div class="table-wrap" style="margin-bottom:0;">
         <table id="detailTable">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Item</th>
-              <th>Qty</th>
-              <th>L</th>
-              <th>W</th>
-              <th>H</th>
-              <th>CBM</th>
-              <th>G.W (kg)</th>
-              <th>판정</th>
-              <th>배정 / 선적방식</th>
-              <th>Remark</th>
+              <th>#</th><th>Item</th><th>Qty</th><th>L</th><th>W</th><th>H</th>
+              <th>CBM</th><th>G.W (kg)</th><th>판정</th><th>배정 / 선적방식</th><th>Remark</th>
             </tr>
           </thead>
           <tbody id="detailBody"></tbody>
         </table>
       </div>
     </div>
-
     <div class="btn-row" style="margin-top:20px;">
       <button class="btn-primary" onclick="exportExcel()">엑셀로 다운로드</button>
       <button class="btn-secondary" onclick="resetAll()">새 파일 계산</button>
@@ -313,31 +294,29 @@
 
 <script>
 const CONTAINERS = {
-  "20GP":  { L:5895, W:2350, H:2392, maxCBM:33.2, maxGW:21700 },
-  "40GP":  { L:12030, W:2350, H:2392, maxCBM:67.7, maxGW:26680 },
-  "40HC":  { L:12030, W:2350, H:2695, maxCBM:76.4, maxGW:26480 },
-  "20FR":  { L:5620, W:2240, H:2233, maxGW:30480 },
-  "40FR":  { L:12080, W:2228, H:2000, maxGW:40000 },
+  "20GP": { L:5895, W:2350, H:2392, maxCBM:33.2, maxGW:21700 },
+  "40GP": { L:12030, W:2350, H:2392, maxCBM:67.7, maxGW:26680 },
+  "40HC": { L:12030, W:2350, H:2695, maxCBM:76.4, maxGW:26480 },
+  "20FR": { L:5620, W:2240, H:2233, maxGW:30480 },
+  "40FR": { L:12080, W:2228, H:2000, maxGW:40000 },
 };
-
 const FIELD_KEYS = ["item","qty","length","width","height","cbm","gw"];
 const FIELD_LABELS = { item:"Item / 품목명", qty:"Qty / 수량", length:"L / 길이 (mm)", width:"W / 너비 (mm)", height:"H / 높이 (mm)", cbm:"CBM", gw:"G.W (kg)" };
 const AUTO_KEYWORDS = {
-  item:    ["item","품목","description","desc","cargo","name","품명","화물명"],
-  qty:     ["qty","quantity","수량","pcs","pieces","ea"],
-  length:  ["length","길이","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long"],
-  width:   ["width","너비","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide"],
-  height:  ["height","높이","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high"],
-  cbm:     ["cbm","volume","부피","m3","m³","cbm(m3)"],
-  gw:      ["g.w","gw","gross","weight","중량","g.w(kg)","gw(kg)","gross weight","kg"],
+  item:   ["item","품목","description","desc","cargo","name","품명","화물명"],
+  qty:    ["qty","quantity","수량","pcs","pieces","ea"],
+  length: ["length","길이","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long"],
+  width:  ["width","너비","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide"],
+  height: ["height","높이","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high"],
+  cbm:    ["cbm","volume","부피","m3","m³","cbm(m3)"],
+  gw:     ["g.w","gw","gross","weight","중량","g.w(kg)","gw(kg)","gross weight","kg"],
 };
-
 let rawData = [], headers = [], fieldMap = {};
 
 function autoMap(hdrs) {
   const map = {};
   FIELD_KEYS.forEach(k => map[k] = "");
-  hdrs.forEach((h, i) => {
+  hdrs.forEach(h => {
     const hLow = String(h).toLowerCase().trim();
     for (const [key, kws] of Object.entries(AUTO_KEYWORDS)) {
       if (!map[key] && kws.some(kw => hLow.includes(kw))) map[key] = h;
@@ -349,16 +328,16 @@ function autoMap(hdrs) {
 function loadSample() {
   headers = ["Item Description","Qty","Length(mm)","Width(mm)","Height(mm)","CBM","G.W(kg)"];
   rawData = [
-    ["Steel Frame A", 2, 4200, 1800, 2100, 15.876, 3200],
-    ["Generator Unit", 1, 3500, 1500, 2200, 11.55, 4800],
-    ["Pump Assembly", 3, 800, 600, 900, 1.296, 420],
-    ["Control Panel", 4, 1200, 500, 800, 1.92, 280],
-    ["Pipe Bundle", 2, 6000, 800, 800, 7.68, 1100],
-    ["Excavator Arm", 1, 8500, 2600, 1800, 39.78, 12000],
-    ["Concrete Mixer", 1, 4800, 2500, 3200, 38.4, 9500],
-    ["Cable Drum", 5, 1200, 1200, 1200, 8.64, 600],
-    ["Transformer Box", 2, 2200, 1800, 2000, 15.84, 5200],
-    ["Spare Parts Kit", 10, 600, 400, 300, 0.72, 85],
+    ["Steel Frame A",2,4200,1800,2100,15.876,3200],
+    ["Generator Unit",1,3500,1500,2200,11.55,4800],
+    ["Pump Assembly",3,800,600,900,1.296,420],
+    ["Control Panel",4,1200,500,800,1.92,280],
+    ["Pipe Bundle",2,6000,800,800,7.68,1100],
+    ["Excavator Arm",1,8500,2600,1800,39.78,12000],
+    ["Concrete Mixer",1,4800,2500,3200,38.4,9500],
+    ["Cable Drum",5,1200,1200,1200,8.64,600],
+    ["Transformer Box",2,2200,1800,2000,15.84,5200],
+    ["Spare Parts Kit",10,600,400,300,0.72,85],
   ];
   fieldMap = autoMap(headers);
   showMapping();
@@ -367,7 +346,7 @@ function loadSample() {
 function setStep(n) {
   [1,2,3].forEach(i => {
     const el = document.getElementById("step"+i);
-    el.className = "step" + (i < n ? " done" : i === n ? " active" : "");
+    el.className = "step"+(i<n?" done":i===n?" active":"");
   });
 }
 
@@ -375,7 +354,6 @@ document.getElementById("fileInput").addEventListener("change", function(e) {
   const file = e.target.files[0];
   if (file) readFile(file);
 });
-
 const dz = document.getElementById("dropZone");
 dz.addEventListener("dragover", e => { e.preventDefault(); dz.classList.add("drag"); });
 dz.addEventListener("dragleave", () => dz.classList.remove("drag"));
@@ -388,9 +366,9 @@ dz.addEventListener("drop", e => {
 function readFile(file) {
   const reader = new FileReader();
   reader.onload = function(e) {
-    const wb = XLSX.read(e.target.result, { type: "binary" });
+    const wb = XLSX.read(e.target.result, { type:"binary" });
     const ws = wb.Sheets[wb.SheetNames[0]];
-    const json = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+    const json = XLSX.utils.sheet_to_json(ws, { header:1, defval:"" });
     if (json.length < 2) { alert("데이터가 없습니다."); return; }
     headers = json[0].map(String);
     rawData = json.slice(1).filter(row => row.some(c => c !== ""));
@@ -404,7 +382,6 @@ function showMapping() {
   setStep(2);
   document.getElementById("uploadSection").classList.add("hidden");
   document.getElementById("mappingSection").classList.remove("hidden");
-
   const grid = document.getElementById("mapperGrid");
   grid.innerHTML = "";
   FIELD_KEYS.forEach(key => {
@@ -431,17 +408,13 @@ function toNum(v) { const n = parseFloat(String(v).replace(/,/g,"")); return isN
 function renderPreview() {
   const head = document.getElementById("previewHead");
   const body = document.getElementById("previewBody");
-  head.innerHTML = `<tr>${FIELD_KEYS.map(k => `<th>${FIELD_LABELS[k]}</th>`).join("")}</tr>`;
+  head.innerHTML = `<tr>${FIELD_KEYS.map(k=>`<th>${FIELD_LABELS[k]}</th>`).join("")}</tr>`;
   body.innerHTML = rawData.slice(0,8).map(row => {
     const vals = FIELD_KEYS.map(k => getVal(row, k));
-    return `<tr>${vals.map(v => `<td>${v}</td>`).join("")}</tr>`;
+    return `<tr>${vals.map(v=>`<td>${v}</td>`).join("")}</tr>`;
   }).join("");
 }
 
-// ── OOG 판단 트리 ──────────────────────────────────────────
-// ① 일반 컨테이너 → ② OT → ③ 20'FR → ④ 40'FR → ⑤ 40'FR×2 → ⑥ Breakbulk
-
-// Over-width 편측 허용 한도 (선사 일반 기준, 편측 600mm 초과 시 Breakbulk 검토)
 const OW_CELL_LIMIT = 600;
 
 function isOOG(L, W, H) {
@@ -453,104 +426,58 @@ function isOOG(L, W, H) {
 }
 
 function classifyOOG(L, W, H, GW) {
-  // 반환: { type, label, remark, badgeClass }
-  const fr20 = CONTAINERS["20FR"];
-  const fr40 = CONTAINERS["40FR"];
+  const fr20 = CONTAINERS["20FR"], fr40 = CONTAINERS["40FR"];
+  const overH = H > 2695, overW = W > 2350, overL = L > 12030;
+  const overWmm = overW ? W - 2350 : 0;
 
-  const overH   = H > 2695;
-  const overW   = W > 2350;
-  const overL   = L > 12030;
-  const overWmm = overW ? W - 2350 : 0; // 편측 초과량
+  if (overH && !overW && !overL && H <= 4000)
+    return { type:"OT", label:"Open Top", badgeClass:"badge-ot",
+      remark:"높이만 초과. 너비·길이는 컨테이너 내부 이내 → OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버." };
 
-  // ② OT: 높이만 초과, 너비·길이는 GP 내부 이내
-  if (overH && !overW && !overL && H <= 4000) {
-    return {
-      type: "OT",
-      label: "Open Top",
-      remark: "높이만 초과. 너비·길이는 컨테이너 내부 이내 → OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버.",
-      badgeClass: "badge-ot"
-    };
+  if (L <= fr20.L && W <= (fr20.W+1000) && H <= (fr20.H+1000) && GW <= fr20.maxGW) {
+    const owSide = overW ? Math.ceil((W-fr20.W)/2) : 0;
+    return { type:"20FR", label:"20'FR", badgeClass:"badge-fr",
+      remark:`20'FR 단독 적재 가능. ${overW?`Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임(Sur-charge) 적용.`:""} ${overH?`Over-height ${H-fr20.H}mm — 선사 확인 필요.`:""}`.trim() };
   }
 
-  // ③ 20'FR 단독
-  if (L <= fr20.L && W <= (fr20.W + 1000) && H <= (fr20.H + 1000) && GW <= fr20.maxGW) {
-    const owSide = overW ? Math.ceil((W - fr20.W) / 2) : 0;
-    return {
-      type: "20FR",
-      label: "20'FR",
-      remark: `20'FR 단독 적재 가능. ${overW ? `Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임(Sur-charge) 적용.` : ""} ${overH ? `Over-height ${H - fr20.H}mm — 선사 확인 필요.` : ""}`.trim(),
-      badgeClass: "badge-fr"
-    };
+  if (L <= fr40.L && W <= (fr40.W+1000) && H <= (fr40.H+1000) && GW <= fr40.maxGW) {
+    const owSide = overW ? Math.ceil((W-fr40.W)/2) : 0;
+    return { type:"40FR", label:"40'FR", badgeClass:"badge-fr",
+      remark:`40'FR 단독 적재 가능. ${overW?`Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임 적용.`:""} ${overH?`Over-height ${H-fr40.H}mm — Lashing 계획 필요.`:""}`.trim() };
   }
 
-  // ④ 40'FR 단독
-  if (L <= fr40.L && W <= (fr40.W + 1000) && H <= (fr40.H + 1000) && GW <= fr40.maxGW) {
-    const owSide = overW ? Math.ceil((W - fr40.W) / 2) : 0;
-    return {
-      type: "40FR",
-      label: "40'FR",
-      remark: `40'FR 단독 적재 가능. ${overW ? `Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임 적용.` : ""} ${overH ? `Over-height ${H - fr40.H}mm — Lashing 계획 필요.` : ""}`.trim(),
-      badgeClass: "badge-fr"
-    };
-  }
+  if (L <= 24000 && GW <= fr40.maxGW)
+    return { type:"40FR×2", label:"40'FR × 2", badgeClass:"badge-double-fr",
+      remark:"40'FR 2개 연결(Double FR) 방식 검토. 유효 바닥 길이 약 23,000~24,000mm. 화물이 두 FR에 걸쳐 고정(Lashing)됨. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요. 특수 운임·항만 작업비 별도 발생." };
 
-  // ⑤ 40'FR × 2 연결 (Double FR / Bi-Fracking)
-  // 유효 길이 약 24,000mm, 중량은 FR 1개 기준 40,000kg (2개 합산 아님 — 선사 협의)
-  if (L <= 24000 && GW <= fr40.maxGW) {
-    return {
-      type: "40FR×2",
-      label: "40'FR × 2",
-      remark: `40'FR 2개 연결(Double FR) 방식 검토. 유효 바닥 길이 약 23,000~24,000mm. 화물이 두 FR에 걸쳐 고정(Lashing)됨. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요. 특수 운임·항만 작업비 별도 발생.`,
-      badgeClass: "badge-double-fr"
-    };
-  }
-
-  // ⑥ Breakbulk / Bulk 선적
-  return {
-    type: "BREAKBULK",
-    label: "Breakbulk",
-    remark: `컨테이너 선적 불가 — Breakbulk(일반화물) 전용 선박 필요. 사유: ${L > 24000 ? `길이 ${L}mm (40'FR×2 한도 24,000mm 초과)` : ""} ${GW > fr40.maxGW ? `중량 ${GW.toLocaleString()}kg (40'FR 한도 40,000kg 초과)` : ""} ${overWmm > OW_CELL_LIMIT * 2 ? `너비 편측 ${Math.ceil(overWmm/2)}mm (Cell Guide 허용 한도 초과)` : ""}`.trim(),
-    badgeClass: "badge-bulk"
-  };
+  return { type:"BREAKBULK", label:"Breakbulk", badgeClass:"badge-bulk",
+    remark:`컨테이너 선적 불가 — Breakbulk(일반화물) 전용 선박 필요. 사유: ${L>24000?`길이 ${L}mm (40'FR×2 한도 24,000mm 초과)`:""} ${GW>fr40.maxGW?`중량 ${GW.toLocaleString()}kg (40'FR 한도 40,000kg 초과)`:""} ${overWmm>OW_CELL_LIMIT*2?`너비 편측 ${Math.ceil(overWmm/2)}mm (Cell Guide 허용 한도 초과)`:""}`.trim() };
 }
 
 function runCalc() {
   const normalCargo = [], oogCargo = [];
-
   rawData.forEach((row, i) => {
-    const item = getVal(row, "item") || `Item ${i+1}`;
-    const qty  = toNum(getVal(row, "qty")) || 1;
-    const L    = toNum(getVal(row, "length"));
-    const W    = toNum(getVal(row, "width"));
-    const H    = toNum(getVal(row, "height"));
-    let   cbm  = toNum(getVal(row, "cbm"));
-    const gw   = toNum(getVal(row, "gw"));
-
-    if (cbm === 0 && L && W && H) cbm = +(L/1000 * W/1000 * H/1000 * qty).toFixed(4);
-
-    const issues = (L && W && H) ? isOOG(L, W, H) : [];
-    const gwTotal = gw * qty || gw;
-
-    const cargo = { idx: i+1, item, qty, L, W, H, cbm, gw: gwTotal, issues, fr: "", frLabel: "", remark: "", badgeClass: "" };
+    const item = getVal(row,"item") || `Item ${i+1}`;
+    const qty  = toNum(getVal(row,"qty")) || 1;
+    const L    = toNum(getVal(row,"length"));
+    const W    = toNum(getVal(row,"width"));
+    const H    = toNum(getVal(row,"height"));
+    let   cbm  = toNum(getVal(row,"cbm"));
+    const gw   = toNum(getVal(row,"gw"));
+    if (cbm === 0 && L && W && H) cbm = +(L/1000*W/1000*H/1000*qty).toFixed(4);
+    const issues = (L&&W&&H) ? isOOG(L,W,H) : [];
+    const gwTotal = gw*qty||gw;
+    const cargo = { idx:i+1, item, qty, L, W, H, cbm, gw:gwTotal, issues, fr:"", frLabel:"", remark:"", badgeClass:"" };
     if (issues.length > 0) {
-      const cls = classifyOOG(L, W, H, gwTotal);
-      cargo.fr        = cls.type;
-      cargo.frLabel   = cls.label;
-      cargo.remark    = cls.remark;
-      cargo.badgeClass = cls.badgeClass;
+      const cls = classifyOOG(L,W,H,gwTotal);
+      cargo.fr=cls.type; cargo.frLabel=cls.label; cargo.remark=cls.remark; cargo.badgeClass=cls.badgeClass;
       oogCargo.push(cargo);
-    } else {
-      normalCargo.push(cargo);
-    }
+    } else { normalCargo.push(cargo); }
   });
-
-  const totalNormalCBM = normalCargo.reduce((s,c)=>s+c.cbm,0);
-  const totalNormalGW  = normalCargo.reduce((s,c)=>s+c.gw,0);
-
-  // Greedy: fill 40HC first, remainder
-  const plan = optimizePlan(totalNormalCBM, totalNormalGW);
-
-  renderResults(normalCargo, oogCargo, plan, totalNormalCBM, totalNormalGW);
+  const totalCBM = normalCargo.reduce((s,c)=>s+c.cbm,0);
+  const totalGW  = normalCargo.reduce((s,c)=>s+c.gw,0);
+  const plan = optimizePlan(totalCBM, totalGW);
+  renderResults(normalCargo, oogCargo, plan, totalCBM, totalGW);
   setStep(3);
   document.getElementById("mappingSection").classList.add("hidden");
   document.getElementById("resultSection").classList.add("show");
@@ -558,120 +485,73 @@ function runCalc() {
 }
 
 function optimizePlan(totalCBM, totalGW) {
-  const hc = CONTAINERS["40HC"];
-  const gp = CONTAINERS["40GP"];
-  const s  = CONTAINERS["20GP"];
-
-  let best = null, bestScore = Infinity;
-
-  for (let n40hc = 0; n40hc <= 10; n40hc++) {
-    for (let n40gp = 0; n40gp <= 5; n40gp++) {
-      for (let n20gp = 0; n20gp <= 5; n20gp++) {
-        const capCBM = n40hc*hc.maxCBM + n40gp*gp.maxCBM + n20gp*s.maxCBM;
-        const capGW  = n40hc*hc.maxGW  + n40gp*gp.maxGW  + n20gp*s.maxGW;
-        const total  = n40hc + n40gp + n20gp;
-        if (total === 0) continue;
-        if (capCBM*0.9 >= totalCBM && capGW >= totalGW) {
-          const score = total * 1000 + (capCBM - totalCBM);
-          if (score < bestScore) { bestScore = score; best = {n40hc, n40gp, n20gp, capCBM, capGW, total}; }
-        }
-      }
+  const hc=CONTAINERS["40HC"], gp=CONTAINERS["40GP"], s=CONTAINERS["20GP"];
+  let best=null, bestScore=Infinity;
+  for (let a=0;a<=10;a++) for (let b=0;b<=5;b++) for (let c=0;c<=5;c++) {
+    const capCBM=a*hc.maxCBM+b*gp.maxCBM+c*s.maxCBM;
+    const capGW =a*hc.maxGW +b*gp.maxGW +c*s.maxGW;
+    const total=a+b+c;
+    if (!total) continue;
+    if (capCBM*0.9>=totalCBM && capGW>=totalGW) {
+      const score=total*1000+(capCBM-totalCBM);
+      if (score<bestScore) { bestScore=score; best={n40hc:a,n40gp:b,n20gp:c,capCBM,capGW,total}; }
     }
   }
-  if (!best) {
-    const n = Math.ceil(totalCBM / (hc.maxCBM * 0.9));
-    best = {n40hc:n, n40gp:0, n20gp:0, capCBM:n*hc.maxCBM, capGW:n*hc.maxGW, total:n};
-  }
+  if (!best) { const n=Math.ceil(totalCBM/(hc.maxCBM*0.9)); best={n40hc:n,n40gp:0,n20gp:0,capCBM:n*hc.maxCBM,capGW:n*hc.maxGW,total:n}; }
   return best;
 }
 
 function renderResults(normalCargo, oogCargo, plan, totalCBM, totalGW) {
   const allCargo = [...normalCargo, ...oogCargo];
-
-  // Stat cards
-  const cbmRate = plan.capCBM > 0 ? (totalCBM / (plan.capCBM*0.9) * 100) : 0;
+  const cbmRate = plan.capCBM>0 ? (totalCBM/(plan.capCBM*0.9)*100) : 0;
   document.getElementById("statCards").innerHTML = `
-    <div class="stat-card">
-      <div class="stat-label">총 화물 수</div>
-      <div class="stat-value">${allCargo.length}건</div>
-      <div class="stat-sub">일반 ${normalCargo.length}건 · OOG ${oogCargo.length}건</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">총 CBM</div>
-      <div class="stat-value">${totalCBM.toFixed(2)} m³</div>
-      <div class="stat-sub">총 중량 ${totalGW.toLocaleString()} kg</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">필요 컨테이너</div>
-      <div class="stat-value">${plan.total + oogCargo.length}개</div>
-      <div class="stat-sub">일반 ${plan.total}개 + FR ${oogCargo.length}개</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">CBM 적재율</div>
-      <div class="stat-value">${Math.min(cbmRate,100).toFixed(1)}%</div>
-      <div class="stat-sub">유효 용적 기준 (90%)</div>
-    </div>`;
+    <div class="stat-card"><div class="stat-label">총 화물 수</div><div class="stat-value">${allCargo.length}건</div><div class="stat-sub">일반 ${normalCargo.length}건 · OOG ${oogCargo.length}건</div></div>
+    <div class="stat-card"><div class="stat-label">총 CBM</div><div class="stat-value">${totalCBM.toFixed(2)} m³</div><div class="stat-sub">총 중량 ${totalGW.toLocaleString()} kg</div></div>
+    <div class="stat-card"><div class="stat-label">필요 컨테이너</div><div class="stat-value">${plan.total+oogCargo.length}개</div><div class="stat-sub">일반 ${plan.total}개 + FR ${oogCargo.length}개</div></div>
+    <div class="stat-card"><div class="stat-label">CBM 적재율</div><div class="stat-value">${Math.min(cbmRate,100).toFixed(1)}%</div><div class="stat-sub">유효 용적 기준 (90%)</div></div>`;
 
-  // Container plan
   const planHTML = [];
   if (plan.n40hc) planHTML.push(`<div class="container-pill"><div class="ctype">40'HC</div><div><span class="ccount">${plan.n40hc}</span> <span style="font-size:12px;color:var(--text-3)">개</span></div><div class="csub">CBM ${CONTAINERS["40HC"].maxCBM} / GW ${(CONTAINERS["40HC"].maxGW/1000).toFixed(1)}t</div></div>`);
   if (plan.n40gp) planHTML.push(`<div class="container-pill"><div class="ctype">40'GP</div><div><span class="ccount">${plan.n40gp}</span> <span style="font-size:12px;color:var(--text-3)">개</span></div><div class="csub">CBM ${CONTAINERS["40GP"].maxCBM} / GW ${(CONTAINERS["40GP"].maxGW/1000).toFixed(1)}t</div></div>`);
   if (plan.n20gp) planHTML.push(`<div class="container-pill"><div class="ctype">20'GP</div><div><span class="ccount">${plan.n20gp}</span> <span style="font-size:12px;color:var(--text-3)">개</span></div><div class="csub">CBM ${CONTAINERS["20GP"].maxCBM} / GW ${(CONTAINERS["20GP"].maxGW/1000).toFixed(1)}t</div></div>`);
   if (oogCargo.length) {
     const frCounts = {};
-    oogCargo.forEach(c => frCounts[c.fr] = (frCounts[c.fr]||0)+1);
+    oogCargo.forEach(c => frCounts[c.fr]=(frCounts[c.fr]||0)+1);
     Object.entries(frCounts).forEach(([t,n]) => planHTML.push(`<div class="container-pill" style="border-color:#C4B5FD;"><div class="ctype">${t}</div><div><span class="ccount" style="color:#6D28D9;">${n}</span> <span style="font-size:12px;color:var(--text-3)">개</span></div><div class="csub">OOG 화물 전용</div></div>`));
   }
   document.getElementById("containerPlan").innerHTML = planHTML.join("");
 
-  // Rate bars
-  const gwRate = plan.capGW > 0 ? (totalGW / plan.capGW * 100) : 0;
-  const cbmPct = Math.min(cbmRate, 100);
-  const gwPct  = Math.min(gwRate, 100);
-  const cbmColor = cbmPct >= 75 ? "fill-good" : cbmPct >= 50 ? "fill-ok" : "fill-low";
-  const gwColor  = gwPct  >= 75 ? "fill-good" : gwPct  >= 50 ? "fill-ok" : "fill-low";
+  const gwRate=plan.capGW>0?(totalGW/plan.capGW*100):0;
+  const cbmPct=Math.min(cbmRate,100), gwPct=Math.min(gwRate,100);
+  const cbmColor=cbmPct>=75?"fill-good":cbmPct>=50?"fill-ok":"fill-low";
+  const gwColor =gwPct >=75?"fill-good":gwPct >=50?"fill-ok":"fill-low";
   document.getElementById("rateSection").innerHTML = `
-    <div class="rate-bar-wrap">
-      <div class="rate-bar-label"><span>CBM 적재율</span><span>${cbmPct.toFixed(1)}%</span></div>
-      <div class="rate-bar-bg"><div class="rate-bar-fill ${cbmColor}" style="width:${cbmPct}%"></div></div>
-    </div>
-    <div class="rate-bar-wrap" style="margin-top:10px;">
-      <div class="rate-bar-label"><span>중량 적재율</span><span>${gwPct.toFixed(1)}%</span></div>
-      <div class="rate-bar-bg"><div class="rate-bar-fill ${gwColor}" style="width:${gwPct}%"></div></div>
-    </div>`;
+    <div class="rate-bar-wrap"><div class="rate-bar-label"><span>CBM 적재율</span><span>${cbmPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${cbmColor}" style="width:${cbmPct}%"></div></div></div>
+    <div class="rate-bar-wrap" style="margin-top:10px;"><div class="rate-bar-label"><span>중량 적재율</span><span>${gwPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${gwColor}" style="width:${gwPct}%"></div></div></div>`;
+  document.getElementById("planHint").textContent = `유효 용적 기준 90% 적용 (적재용 CBM: ${(plan.capCBM*0.9).toFixed(1)} m³). 실제 적재 가능 여부는 개별 화물 치수 및 적재 방법에 따라 달라질 수 있습니다.`;
 
-  document.getElementById("planHint").textContent =
-    `유효 용적 기준 90% 적용 (적재용 CBM: ${(plan.capCBM*0.9).toFixed(1)} m³). 실제 적재 가능 여부는 개별 화물 치수 및 적재 방법에 따라 달라질 수 있습니다.`;
-
-  // OOG table
   if (oogCargo.length > 0) {
     document.getElementById("oogCard").style.display = "";
     document.getElementById("oogBody").innerHTML = oogCargo.map(c => `
       <tr class="oog-row">
-        <td>${c.item}</td>
-        <td>${c.L}</td><td>${c.W}</td><td>${c.H}</td>
-        <td>${c.gw.toLocaleString()}</td>
+        <td>${c.item}</td><td>${c.L}</td><td>${c.W}</td><td>${c.H}</td><td>${c.gw.toLocaleString()}</td>
         <td>${c.issues.map(i=>`<span class="badge badge-oog">${i}</span>`).join(" ")}</td>
         <td><span class="badge ${c.badgeClass}">${c.frLabel}</span></td>
         <td style="font-size:11px;color:var(--text-2);max-width:320px;white-space:normal;line-height:1.5;">${c.remark}</td>
       </tr>`).join("");
   }
 
-  // Detail table
   const assignedCargos = assignContainers(normalCargo, plan);
   document.getElementById("detailBody").innerHTML = allCargo.map((c,i) => {
     const isOog = c.issues && c.issues.length > 0;
-    const assigned = isOog ? `<span class="badge ${c.badgeClass}">${c.frLabel}</span>` : `<span class="badge badge-ok">${assignedCargos[i] || "-"}</span>`;
+    const assigned = isOog ? `<span class="badge ${c.badgeClass}">${c.frLabel}</span>` : `<span class="badge badge-ok">${assignedCargos[i]||"-"}</span>`;
     return `<tr ${isOog?"class='oog-row'":""}>
-      <td style="color:var(--text-3)">${c.idx}</td>
-      <td>${c.item}</td>
-      <td>${c.qty}</td>
+      <td style="color:var(--text-3)">${c.idx}</td><td>${c.item}</td><td>${c.qty}</td>
       <td>${c.L||"-"}</td><td>${c.W||"-"}</td><td>${c.H||"-"}</td>
-      <td>${c.cbm.toFixed(3)}</td>
-      <td>${c.gw.toLocaleString()}</td>
-      <td>${isOog ? '<span class="badge badge-oog">OOG</span>' : '<span class="badge badge-ok">일반</span>'}</td>
+      <td>${c.cbm.toFixed(3)}</td><td>${c.gw.toLocaleString()}</td>
+      <td>${isOog?'<span class="badge badge-oog">OOG</span>':'<span class="badge badge-ok">일반</span>'}</td>
       <td>${assigned}</td>
-      <td style="font-size:11px;color:var(--text-2);max-width:280px;white-space:normal;line-height:1.5;">${isOog ? c.remark : "-"}</td>
+      <td style="font-size:11px;color:var(--text-2);max-width:280px;white-space:normal;line-height:1.5;">${isOog?c.remark:"-"}</td>
     </tr>`;
   }).join("");
 
@@ -679,23 +559,19 @@ function renderResults(normalCargo, oogCargo, plan, totalCBM, totalGW) {
 }
 
 function assignContainers(normalCargo, plan) {
-  const assigned = {};
-  const slots = [];
-  if (plan.n40hc) for(let i=0;i<plan.n40hc;i++) slots.push({type:"40HC", rem:CONTAINERS["40HC"].maxCBM*0.9, gwRem:CONTAINERS["40HC"].maxGW, cargo:[]});
-  if (plan.n40gp) for(let i=0;i<plan.n40gp;i++) slots.push({type:"40GP", rem:CONTAINERS["40GP"].maxCBM*0.9, gwRem:CONTAINERS["40GP"].maxGW, cargo:[]});
-  if (plan.n20gp) for(let i=0;i<plan.n20gp;i++) slots.push({type:"20GP", rem:CONTAINERS["20GP"].maxCBM*0.9, gwRem:CONTAINERS["20GP"].maxGW, cargo:[]});
-
-  const sorted = [...normalCargo].sort((a,b)=>b.cbm-a.cbm);
-  sorted.forEach(c => {
+  const assigned = {}, slots = [];
+  if (plan.n40hc) for(let i=0;i<plan.n40hc;i++) slots.push({type:"40HC",rem:CONTAINERS["40HC"].maxCBM*0.9,gwRem:CONTAINERS["40HC"].maxGW});
+  if (plan.n40gp) for(let i=0;i<plan.n40gp;i++) slots.push({type:"40GP",rem:CONTAINERS["40GP"].maxCBM*0.9,gwRem:CONTAINERS["40GP"].maxGW});
+  if (plan.n20gp) for(let i=0;i<plan.n20gp;i++) slots.push({type:"20GP",rem:CONTAINERS["20GP"].maxCBM*0.9,gwRem:CONTAINERS["20GP"].maxGW});
+  [...normalCargo].sort((a,b)=>b.cbm-a.cbm).forEach(c => {
     for (const slot of slots) {
-      if (slot.rem >= c.cbm && slot.gwRem >= c.gw) {
-        slot.rem -= c.cbm; slot.gwRem -= c.gw;
-        slot.cargo.push(c.idx);
-        assigned[c.idx-1] = `${slot.type} #${slots.indexOf(slot)+1}`;
+      if (slot.rem>=c.cbm && slot.gwRem>=c.gw) {
+        slot.rem-=c.cbm; slot.gwRem-=c.gw;
+        assigned[c.idx-1]=`${slot.type} #${slots.indexOf(slot)+1}`;
         break;
       }
     }
-    if (!assigned[c.idx-1]) assigned[c.idx-1] = "배정 필요";
+    if (!assigned[c.idx-1]) assigned[c.idx-1]="배정 필요";
   });
   return assigned;
 }
@@ -703,55 +579,48 @@ function assignContainers(normalCargo, plan) {
 function exportExcel() {
   if (!window._exportData) return;
   const { allCargo, plan, totalCBM, totalGW, assignedCargos } = window._exportData;
-
   const wb = XLSX.utils.book_new();
-
-  // Sheet 1: Summary
   const summary = [
-    ["CLP Planner - 결과 요약",""],
-    ["생성일시", new Date().toLocaleString("ko-KR")],
-    ["",""],
-    ["총 화물 건수", allCargo.length],
-    ["총 CBM (m³)", +totalCBM.toFixed(3)],
-    ["총 G.W (kg)", totalGW],
-    ["",""],
-    ["--- 추천 컨테이너 ---",""],
-    ["40'HC", plan.n40hc],
-    ["40'GP", plan.n40gp],
-    ["20'GP", plan.n20gp],
-    ["OOG / FR", allCargo.filter(c=>c.issues?.length).length],
+    ["CLP Planner - 결과 요약",""],["생성일시",new Date().toLocaleString("ko-KR")],["",""],
+    ["총 화물 건수",allCargo.length],["총 CBM (m³)",+totalCBM.toFixed(3)],["총 G.W (kg)",totalGW],["",""],
+    ["--- 추천 컨테이너 ---",""],["40'HC",plan.n40hc],["40'GP",plan.n40gp],["20'GP",plan.n20gp],
+    ["OOG / FR",allCargo.filter(c=>c.issues?.length).length],
   ];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summary), "요약");
-
-  // Sheet 2: Detail
   const detail = [["#","Item","Qty","L(mm)","W(mm)","H(mm)","CBM","G.W(kg)","판정","배정 컨테이너","선적방식","초과 항목","Remark"]];
   allCargo.forEach((c,i) => {
     const isOog = c.issues?.length > 0;
-    detail.push([
-      c.idx, c.item, c.qty, c.L||"", c.W||"", c.H||"",
-      +c.cbm.toFixed(3), c.gw,
-      isOog?"OOG":"일반",
-      isOog?"-":(assignedCargos[i]||"-"),
-      isOog?c.frLabel:"-",
-      isOog?c.issues.join(", "):"-",
-      isOog?c.remark:"-"
-    ]);
+    detail.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",+c.cbm.toFixed(3),c.gw,
+      isOog?"OOG":"일반",isOog?"-":(assignedCargos[i]||"-"),isOog?c.frLabel:"-",
+      isOog?c.issues.join(", "):"-",isOog?c.remark:"-"]);
   });
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(detail), "화물 배정 상세");
-
   XLSX.writeFile(wb, `CLP_Result_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 
 function resetAll() {
-  rawData = []; headers = []; fieldMap = {};
+  rawData=[]; headers=[]; fieldMap={};
   document.getElementById("uploadSection").classList.remove("hidden");
   document.getElementById("mappingSection").classList.add("hidden");
   document.getElementById("resultSection").classList.remove("show");
-  document.getElementById("oogCard").style.display = "none";
-  document.getElementById("fileInput").value = "";
+  document.getElementById("oogCard").style.display="none";
+  document.getElementById("fileInput").value="";
   setStep(1);
   window.scrollTo(0,0);
 }
+
+(function() {
+  const b64 = "UEsDBBQAAAAIAF0p0FxGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAF0p0FwFNki+7wAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAxQAAAAIAF0p0FyZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeEBAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQDFAAAAAgAXSnQXKswd8ADCwAARDoAABgAAAAAAAAAAAAAAICBIggAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAIAF0p0FyihS6zBwgAAAcoAAAYAAAAAAAAAAAAAACAgVsTAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACABdKdBcx+cHqTAGAAAdFwAAGAAAAAAAAAAAAAAAgIGYGwAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAXSnQXBx7M/MVBQAAZDcAAA0AAAAAAAAAAAAAAIAB/iEAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACABdKdBcl4q7HMAAAAATAgAACwAAAAAAAAAAAAAAgAE+JwAAX3JlbHMvLnJlbHNQSwECFAMUAAAACABdKdBcB4QyWsABAADHAwAADwAAAAAAAAAAAAAAgAEnKAAAeGwvd29ya2Jvb2sueG1sUEsBAhQDFAAAAAgAXSnQXLts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIABFCoAAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQDFAAAAAgAXSnQXKb8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIABBisAAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAsACwDKAgAAWiwAAAAA";
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  const blob = new Blob([bytes], {type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+  const url = URL.createObjectURL(blob);
+  document.addEventListener("DOMContentLoaded", function() {
+    const a = document.getElementById("formDownloadLink");
+    if (a) a.href = url;
+  });
+})();
 </script>
 </body>
 </html>
