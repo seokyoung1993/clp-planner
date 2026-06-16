@@ -7,89 +7,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #F7F6F3;
-    --surface: #FFFFFF;
-    --border: #E2E0D8;
-    --border-strong: #C8C6BC;
-    --text: #1A1917;
-    --text-2: #5C5A54;
-    --text-3: #9B9890;
-    --accent: #1A56A0;
-    --accent-bg: #EBF2FA;
-    --success: #166534;
-    --success-bg: #DCFCE7;
-    --warn: #854F0B;
-    --warn-bg: #FAEEDA;
-    --danger: #991B1B;
-    --danger-bg: #FEE2E2;
-    --mono: 'Courier New', monospace;
+    --bg: #F7F6F3; --surface: #FFFFFF; --border: #E2E0D8; --border-strong: #C8C6BC;
+    --text: #1A1917; --text-2: #5C5A54; --text-3: #9B9890; --accent: #1A56A0;
+    --accent-bg: #EBF2FA; --success: #166534; --success-bg: #DCFCE7;
+    --warn: #854F0B; --warn-bg: #FAEEDA; --danger: #991B1B; --danger-bg: #FEE2E2;
   }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-mark {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 6px;
-    display: grid; place-items: center;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.6; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; gap: 12px; }
+  .logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 6px; display: grid; place-items: center; }
   .logo-mark svg { width: 16px; height: 16px; }
   header h1 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
   header span { font-size: 12px; color: var(--text-3); margin-left: 4px; }
-
   main { max-width: 1040px; margin: 0 auto; padding: 32px 24px; }
-
-  .upload-section { margin-bottom: 28px; }
-  .upload-zone {
-    border: 1.5px dashed var(--border-strong);
-    border-radius: 12px;
-    background: var(--surface);
-    padding: 40px 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    position: relative;
-  }
+  .upload-zone { border: 1.5px dashed var(--border-strong); border-radius: 12px; background: var(--surface); padding: 40px 24px; text-align: center; cursor: pointer; transition: border-color 0.15s, background 0.15s; position: relative; }
   .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: var(--accent-bg); }
   .upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
   .upload-icon { font-size: 32px; margin-bottom: 10px; color: var(--text-3); }
   .upload-zone p { color: var(--text-2); font-size: 13px; }
   .upload-zone strong { color: var(--text); font-weight: 500; }
-
-  .mapper-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-  }
+  .mapper-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
   .mapper-card h2 { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
   .mapper-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
   .mapper-field label { display: block; font-size: 11px; font-weight: 500; color: var(--text-3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .mapper-field select {
-    width: 100%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
-    background: var(--bg); color: var(--text); font-size: 12px; cursor: pointer;
-  }
+  .mapper-field select { width: 100%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 12px; cursor: pointer; }
   .mapper-field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-
   .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 10px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: 12px; }
   thead tr { background: var(--bg); }
@@ -97,64 +39,36 @@
   td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
   tr:last-child td { border-bottom: none; }
   tr.oog-row td { background: #FFF8F0; }
-  .badge {
-    display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600;
-    letter-spacing: 0.03em;
-  }
+  .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; letter-spacing: 0.03em; }
   .badge-oog { background: var(--warn-bg); color: var(--warn); }
   .badge-ok { background: var(--success-bg); color: var(--success); }
   .badge-fr { background: #F3EEFF; color: #4C1D95; }
   .badge-ot { background: #E0F2FE; color: #0C4A6E; }
   .badge-double-fr { background: #FDF4FF; color: #701A75; border: 1px solid #E879F9; }
   .badge-bulk { background: var(--danger-bg); color: var(--danger); font-weight: 700; }
-
   .btn-row { display: flex; gap: 10px; align-items: center; margin-bottom: 28px; }
-  .btn-primary {
-    padding: 10px 24px; background: var(--accent); color: #fff;
-    border: none; border-radius: 8px; font-size: 13px; font-weight: 500;
-    cursor: pointer; transition: opacity 0.15s;
-  }
+  .btn-primary { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
   .btn-primary:hover { opacity: 0.88; }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-secondary {
-    padding: 10px 20px; background: var(--surface); color: var(--text);
-    border: 1px solid var(--border-strong); border-radius: 8px; font-size: 13px;
-    cursor: pointer; transition: background 0.15s;
-  }
+  .btn-secondary { padding: 10px 20px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; font-size: 13px; cursor: pointer; transition: background 0.15s; }
   .btn-secondary:hover { background: var(--bg); }
-
   .result-section { display: none; }
   .result-section.show { display: block; }
-
   .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   @media (max-width: 640px) { .result-grid { grid-template-columns: 1fr; } }
-
-  .stat-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 20px;
-  }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
   .stat-label { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
   .stat-value { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
   .stat-sub { font-size: 12px; color: var(--text-2); margin-top: 2px; }
-
-  .result-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 24px; margin-bottom: 16px;
-  }
+  .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
   .result-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; }
   .section-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
   .dot-blue { background: var(--accent); }
   .dot-orange { background: #D97706; }
-
   .container-plan { display: flex; flex-wrap: wrap; gap: 10px; }
-  .container-pill {
-    border: 1.5px solid var(--border-strong); border-radius: 8px;
-    padding: 10px 16px; background: var(--bg); min-width: 130px;
-  }
-  .container-pill .ctype { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .container-pill { border: 1.5px solid var(--border-strong); border-radius: 8px; padding: 10px 16px; background: var(--bg); min-width: 130px; }
+  .container-pill .ctype { font-size: 16px; font-weight: 700; color: var(--text); }
   .container-pill .ccount { font-size: 22px; font-weight: 700; color: var(--accent); }
   .container-pill .csub { font-size: 11px; color: var(--text-3); margin-top: 2px; }
-
   .rate-bar-wrap { margin-top: 8px; }
   .rate-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-2); margin-bottom: 4px; }
   .rate-bar-bg { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
@@ -162,11 +76,9 @@
   .fill-good { background: #22C55E; }
   .fill-ok { background: #F59E0B; }
   .fill-low { background: #EF4444; }
-
   .oog-table-wrap { overflow-x: auto; }
   .hint { font-size: 11px; color: var(--text-3); margin-top: 10px; padding: 8px 12px; background: var(--bg); border-radius: 6px; }
   .hidden { display: none !important; }
-
   .steps { display: flex; align-items: center; gap: 0; margin-bottom: 24px; }
   .step { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
   .step.active { color: var(--accent); font-weight: 500; }
@@ -176,7 +88,6 @@
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo-mark">
     <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,9 +101,7 @@
   <h1>CLP Planner</h1>
   <span>Container Loading Plan 자동화</span>
 </header>
-
 <main>
-
   <div class="steps" id="stepsBar">
     <div class="step active" id="step1"><div class="step-num">1</div> 파일 업로드</div>
     <div class="step-sep"></div>
@@ -201,7 +110,6 @@
     <div class="step" id="step3"><div class="step-num">3</div> 결과 확인</div>
   </div>
 
-  <!-- Step 1: Upload -->
   <div id="uploadSection">
     <div class="upload-zone" id="dropZone">
       <input type="file" accept=".xlsx,.xls,.csv" id="fileInput" />
@@ -215,19 +123,13 @@
         <button onclick="loadSample()" style="background:none; border:none; color:var(--accent); cursor:pointer; font-size:12px; text-decoration:underline;">샘플 PL 불러오기</button>
       </p>
       <div style="display:flex; align-items:center; gap:8px; padding:10px 16px; background:var(--surface); border:1px solid var(--border); border-radius:8px;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 12.5V14h12v-1.5M8 2v8m0 0L5 7m3 3l3-3" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12.5V14h12v-1.5M8 2v8m0 0L5 7m3 3l3-3" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span style="font-size:12px; color:var(--text-2);">Packing List 양식이 없으시다면 →</span>
-        <a id="formDownloadLink" download="CLP_Packing_List_Form.xlsx"
-           style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:underline; cursor:pointer;">
-          CLP Packing List Form 다운로드
-        </a>
+        <a id="formDownloadLink" download="CLP_Packing_List_Form.xlsx" style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:underline; cursor:pointer;">CLP Packing List Form 다운로드</a>
       </div>
     </div>
   </div>
 
-  <!-- Step 2: Mapping + Preview -->
   <div id="mappingSection" class="hidden">
     <div class="mapper-card">
       <h2>컬럼 매핑</h2>
@@ -235,18 +137,14 @@
       <div class="mapper-grid" id="mapperGrid"></div>
     </div>
     <div class="table-wrap">
-      <table id="previewTable">
-        <thead id="previewHead"></thead>
-        <tbody id="previewBody"></tbody>
-      </table>
+      <table><thead id="previewHead"></thead><tbody id="previewBody"></tbody></table>
     </div>
     <div class="btn-row">
-      <button class="btn-primary" id="calcBtn" onclick="runCalc()">CLP 계산 실행</button>
+      <button class="btn-primary" onclick="runCalc()">CLP 계산 실행</button>
       <button class="btn-secondary" onclick="resetAll()">다시 업로드</button>
     </div>
   </div>
 
-  <!-- Step 3: Results -->
   <div class="result-section" id="resultSection">
     <div class="result-grid" id="statCards"></div>
     <div class="result-card">
@@ -258,13 +156,8 @@
     <div class="result-card" id="oogCard" style="display:none;">
       <h3><span class="section-dot dot-orange"></span>OOG 화물 — 선적 방식 판정</h3>
       <div class="oog-table-wrap">
-        <table id="oogTable">
-          <thead>
-            <tr>
-              <th>Item</th><th>L (mm)</th><th>W (mm)</th><th>H (mm)</th>
-              <th>G.W (kg)</th><th>초과 항목</th><th>선적 방식</th><th>Remark</th>
-            </tr>
-          </thead>
+        <table>
+          <thead><tr><th>Item</th><th>L (mm)</th><th>W (mm)</th><th>H (mm)</th><th>G.W (kg)</th><th>초과 항목</th><th>선적 방식</th><th>Remark</th></tr></thead>
           <tbody id="oogBody"></tbody>
         </table>
       </div>
@@ -273,13 +166,8 @@
     <div class="result-card">
       <h3><span class="section-dot dot-blue"></span>화물 상세 — 컨테이너 배정 결과</h3>
       <div class="table-wrap" style="margin-bottom:0;">
-        <table id="detailTable">
-          <thead>
-            <tr>
-              <th>#</th><th>Item</th><th>Qty</th><th>L</th><th>W</th><th>H</th>
-              <th>CBM</th><th>G.W (kg)</th><th>판정</th><th>배정 / 선적방식</th><th>Remark</th>
-            </tr>
-          </thead>
+        <table>
+          <thead><tr><th>#</th><th>Item</th><th>Qty</th><th>L</th><th>W</th><th>H</th><th>CBM</th><th>G.W (kg)</th><th>판정</th><th>배정 / 선적방식</th><th>Remark</th></tr></thead>
           <tbody id="detailBody"></tbody>
         </table>
       </div>
@@ -289,7 +177,6 @@
       <button class="btn-secondary" onclick="resetAll()">새 파일 계산</button>
     </div>
   </div>
-
 </main>
 
 <script>
@@ -351,17 +238,12 @@ function setStep(n) {
 }
 
 document.getElementById("fileInput").addEventListener("change", function(e) {
-  const file = e.target.files[0];
-  if (file) readFile(file);
+  if (e.target.files[0]) readFile(e.target.files[0]);
 });
 const dz = document.getElementById("dropZone");
 dz.addEventListener("dragover", e => { e.preventDefault(); dz.classList.add("drag"); });
 dz.addEventListener("dragleave", () => dz.classList.remove("drag"));
-dz.addEventListener("drop", e => {
-  e.preventDefault(); dz.classList.remove("drag");
-  const file = e.dataTransfer.files[0];
-  if (file) readFile(file);
-});
+dz.addEventListener("drop", e => { e.preventDefault(); dz.classList.remove("drag"); if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); });
 
 function readFile(file) {
   const reader = new FileReader();
@@ -406,13 +288,10 @@ function getVal(row, key) {
 function toNum(v) { const n = parseFloat(String(v).replace(/,/g,"")); return isNaN(n) ? 0 : n; }
 
 function renderPreview() {
-  const head = document.getElementById("previewHead");
-  const body = document.getElementById("previewBody");
-  head.innerHTML = `<tr>${FIELD_KEYS.map(k=>`<th>${FIELD_LABELS[k]}</th>`).join("")}</tr>`;
-  body.innerHTML = rawData.slice(0,8).map(row => {
-    const vals = FIELD_KEYS.map(k => getVal(row, k));
-    return `<tr>${vals.map(v=>`<td>${v}</td>`).join("")}</tr>`;
-  }).join("");
+  document.getElementById("previewHead").innerHTML = `<tr>${FIELD_KEYS.map(k=>`<th>${FIELD_LABELS[k]}</th>`).join("")}</tr>`;
+  document.getElementById("previewBody").innerHTML = rawData.slice(0,8).map(row =>
+    `<tr>${FIELD_KEYS.map(k=>`<td>${getVal(row,k)}</td>`).join("")}</tr>`
+  ).join("");
 }
 
 const OW_CELL_LIMIT = 600;
@@ -427,26 +306,26 @@ function isOOG(L, W, H) {
 
 function classifyOOG(L, W, H, GW) {
   const fr20 = CONTAINERS["20FR"], fr40 = CONTAINERS["40FR"];
-  const overH = H > 2695, overW = W > 2350, overL = L > 12030;
-  const overWmm = overW ? W - 2350 : 0;
+  const overH = H>2695, overW = W>2350, overL = L>12030;
+  const overWmm = overW ? W-2350 : 0;
 
-  if (overH && !overW && !overL && H <= 4000)
+  if (overH && !overW && !overL && H<=4000)
     return { type:"OT", label:"Open Top", badgeClass:"badge-ot",
       remark:"높이만 초과. 너비·길이는 컨테이너 내부 이내 → OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버." };
 
-  if (L <= fr20.L && W <= (fr20.W+1000) && H <= (fr20.H+1000) && GW <= fr20.maxGW) {
+  if (L<=fr20.L && W<=(fr20.W+1000) && H<=(fr20.H+1000) && GW<=fr20.maxGW) {
     const owSide = overW ? Math.ceil((W-fr20.W)/2) : 0;
     return { type:"20FR", label:"20'FR", badgeClass:"badge-fr",
       remark:`20'FR 단독 적재 가능. ${overW?`Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임(Sur-charge) 적용.`:""} ${overH?`Over-height ${H-fr20.H}mm — 선사 확인 필요.`:""}`.trim() };
   }
 
-  if (L <= fr40.L && W <= (fr40.W+1000) && H <= (fr40.H+1000) && GW <= fr40.maxGW) {
+  if (L<=fr40.L && W<=(fr40.W+1000) && H<=(fr40.H+1000) && GW<=fr40.maxGW) {
     const owSide = overW ? Math.ceil((W-fr40.W)/2) : 0;
     return { type:"40FR", label:"40'FR", badgeClass:"badge-fr",
       remark:`40'FR 단독 적재 가능. ${overW?`Over-width 편측 약 ${owSide}mm — 선사 OOG 사전 신고 및 특수 운임 적용.`:""} ${overH?`Over-height ${H-fr40.H}mm — Lashing 계획 필요.`:""}`.trim() };
   }
 
-  if (L <= 24000 && GW <= fr40.maxGW)
+  if (L<=24000 && GW<=fr40.maxGW)
     return { type:"40FR×2", label:"40'FR × 2", badgeClass:"badge-double-fr",
       remark:"40'FR 2개 연결(Double FR) 방식 검토. 유효 바닥 길이 약 23,000~24,000mm. 화물이 두 FR에 걸쳐 고정(Lashing)됨. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요. 특수 운임·항만 작업비 별도 발생." };
 
@@ -464,7 +343,7 @@ function runCalc() {
     const H    = toNum(getVal(row,"height"));
     let   cbm  = toNum(getVal(row,"cbm"));
     const gw   = toNum(getVal(row,"gw"));
-    if (cbm === 0 && L && W && H) cbm = +(L/1000*W/1000*H/1000*qty).toFixed(4);
+    if (cbm===0 && L && W && H) cbm = +(L/1000*W/1000*H/1000*qty).toFixed(4);
     const issues = (L&&W&&H) ? isOOG(L,W,H) : [];
     const gwTotal = gw*qty||gw;
     const cargo = { idx:i+1, item, qty, L, W, H, cbm, gw:gwTotal, issues, fr:"", frLabel:"", remark:"", badgeClass:"" };
@@ -489,7 +368,7 @@ function optimizePlan(totalCBM, totalGW) {
   let best=null, bestScore=Infinity;
   for (let a=0;a<=10;a++) for (let b=0;b<=5;b++) for (let c=0;c<=5;c++) {
     const capCBM=a*hc.maxCBM+b*gp.maxCBM+c*s.maxCBM;
-    const capGW =a*hc.maxGW +b*gp.maxGW +c*s.maxGW;
+    const capGW=a*hc.maxGW+b*gp.maxGW+c*s.maxGW;
     const total=a+b+c;
     if (!total) continue;
     if (capCBM*0.9>=totalCBM && capGW>=totalGW) {
@@ -523,11 +402,9 @@ function renderResults(normalCargo, oogCargo, plan, totalCBM, totalGW) {
 
   const gwRate=plan.capGW>0?(totalGW/plan.capGW*100):0;
   const cbmPct=Math.min(cbmRate,100), gwPct=Math.min(gwRate,100);
-  const cbmColor=cbmPct>=75?"fill-good":cbmPct>=50?"fill-ok":"fill-low";
-  const gwColor =gwPct >=75?"fill-good":gwPct >=50?"fill-ok":"fill-low";
   document.getElementById("rateSection").innerHTML = `
-    <div class="rate-bar-wrap"><div class="rate-bar-label"><span>CBM 적재율</span><span>${cbmPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${cbmColor}" style="width:${cbmPct}%"></div></div></div>
-    <div class="rate-bar-wrap" style="margin-top:10px;"><div class="rate-bar-label"><span>중량 적재율</span><span>${gwPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${gwColor}" style="width:${gwPct}%"></div></div></div>`;
+    <div class="rate-bar-wrap"><div class="rate-bar-label"><span>CBM 적재율</span><span>${cbmPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${cbmPct>=75?"fill-good":cbmPct>=50?"fill-ok":"fill-low"}" style="width:${cbmPct}%"></div></div></div>
+    <div class="rate-bar-wrap" style="margin-top:10px;"><div class="rate-bar-label"><span>중량 적재율</span><span>${gwPct.toFixed(1)}%</span></div><div class="rate-bar-bg"><div class="rate-bar-fill ${gwPct>=75?"fill-good":gwPct>=50?"fill-ok":"fill-low"}" style="width:${gwPct}%"></div></div></div>`;
   document.getElementById("planHint").textContent = `유효 용적 기준 90% 적용 (적재용 CBM: ${(plan.capCBM*0.9).toFixed(1)} m³). 실제 적재 가능 여부는 개별 화물 치수 및 적재 방법에 따라 달라질 수 있습니다.`;
 
   if (oogCargo.length > 0) {
@@ -542,9 +419,11 @@ function renderResults(normalCargo, oogCargo, plan, totalCBM, totalGW) {
   }
 
   const assignedCargos = assignContainers(normalCargo, plan);
-  document.getElementById("detailBody").innerHTML = allCargo.map((c,i) => {
+  document.getElementById("detailBody").innerHTML = allCargo.map(c => {
     const isOog = c.issues && c.issues.length > 0;
-    const assigned = isOog ? `<span class="badge ${c.badgeClass}">${c.frLabel}</span>` : `<span class="badge badge-ok">${assignedCargos[i]||"-"}</span>`;
+    const assigned = isOog
+      ? `<span class="badge ${c.badgeClass}">${c.frLabel}</span>`
+      : `<span class="badge badge-ok">${assignedCargos[c.idx] || "-"}</span>`;
     return `<tr ${isOog?"class='oog-row'":""}>
       <td style="color:var(--text-3)">${c.idx}</td><td>${c.item}</td><td>${c.qty}</td>
       <td>${c.L||"-"}</td><td>${c.W||"-"}</td><td>${c.H||"-"}</td>
@@ -567,11 +446,11 @@ function assignContainers(normalCargo, plan) {
     for (const slot of slots) {
       if (slot.rem>=c.cbm && slot.gwRem>=c.gw) {
         slot.rem-=c.cbm; slot.gwRem-=c.gw;
-        assigned[c.idx-1]=`${slot.type} #${slots.indexOf(slot)+1}`;
+        assigned[c.idx] = `${slot.type} #${slots.indexOf(slot)+1}`;
         break;
       }
     }
-    if (!assigned[c.idx-1]) assigned[c.idx-1]="배정 필요";
+    if (!assigned[c.idx]) assigned[c.idx] = "배정 필요";
   });
   return assigned;
 }
@@ -588,11 +467,11 @@ function exportExcel() {
   ];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summary), "요약");
   const detail = [["#","Item","Qty","L(mm)","W(mm)","H(mm)","CBM","G.W(kg)","판정","배정 컨테이너","선적방식","초과 항목","Remark"]];
-  allCargo.forEach((c,i) => {
+  allCargo.forEach(c => {
     const isOog = c.issues?.length > 0;
     detail.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",+c.cbm.toFixed(3),c.gw,
-      isOog?"OOG":"일반",isOog?"-":(assignedCargos[i]||"-"),isOog?c.frLabel:"-",
-      isOog?c.issues.join(", "):"-",isOog?c.remark:"-"]);
+      isOog?"OOG":"일반", isOog?"-":(assignedCargos[c.idx]||"-"),
+      isOog?c.frLabel:"-", isOog?c.issues.join(", "):"-", isOog?c.remark:"-"]);
   });
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(detail), "화물 배정 상세");
   XLSX.writeFile(wb, `CLP_Result_${new Date().toISOString().slice(0,10)}.xlsx`);
