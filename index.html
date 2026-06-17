@@ -25,20 +25,20 @@
   --r4:4px;--r8:8px;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
-nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 32px;position:sticky;top:0;z-index:100}
+nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 32px;gap:0;position:sticky;top:0;z-index:100}
 .nav-brand{display:flex;align-items:center;gap:10px;margin-right:40px;text-decoration:none}
 .nav-logo{width:32px;height:32px;background:var(--red);border-radius:var(--r4);display:grid;place-items:center}
 .nav-logo span{color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em}
 .nav-title h1{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .nav-title p{font-size:11px;color:var(--text-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.nav-tabs{display:flex;flex:1}
+.nav-tabs{display:flex;gap:0;flex:1}
 .nav-tab{padding:0 20px;height:60px;display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--text-2);border-bottom:2px solid transparent;cursor:default;transition:color .15s,border-color .15s;white-space:nowrap}
 .nav-tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
 .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
 .btn-epc{padding:6px 14px;border:1.5px solid var(--navy);border-radius:var(--r4);font-size:12px;font-weight:600;color:var(--navy);background:transparent;cursor:pointer}
 .btn-epc:hover{background:var(--navy);color:#fff}
 .stepper-wrap{padding:32px 0 24px;display:flex;justify-content:center}
-.stepper{display:flex;align-items:center;max-width:520px;width:100%}
+.stepper{display:flex;align-items:center;gap:0;max-width:520px;width:100%}
 .step-item{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative}
 .step-item:not(:last-child)::after{content:'';position:absolute;top:18px;left:calc(50% + 18px);right:calc(-50% + 18px);height:2px;background:var(--border-2)}
 .step-item.done:not(:last-child)::after{background:var(--red)}
@@ -82,7 +82,7 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .btn-primary:hover{opacity:.88}
 .btn-outline{width:100%;padding:10px;background:transparent;color:var(--text);border:1.5px solid var(--border-2);border-radius:var(--r4);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
 .btn-outline:hover{background:var(--bg)}
-.help-card{background:var(--navy);border-radius:var(--r8);padding:20px;position:relative;overflow:hidden}
+.help-card{background:var(--navy);border-radius:var(--r8);padding:20px;position:relative;overflow:hidden;margin-top:4px}
 .help-card h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:8px}
 .help-card p{font-size:12px;color:#94A3B8;line-height:1.6;margin-bottom:12px}
 .help-card a{font-size:12px;color:#93C5FD;font-weight:500;text-decoration:none}
@@ -148,7 +148,7 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .badge-fr{background:var(--purple-bg);color:var(--purple)}
 .badge-double-fr{background:#FDF4FF;color:#701A75;border:1px solid #E879F9}
 .badge-bulk{background:var(--danger-bg);color:var(--danger)}
-.cntr-chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:3px;font-size:11px;font-weight:700;background:var(--navy);color:#fff}
+.cntr-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:3px;font-size:11px;font-weight:700;background:var(--navy);color:#fff}
 .remark-cell{font-size:11px;color:var(--text-2);max-width:280px;white-space:normal;line-height:1.5}
 .remark-red{color:var(--red);font-weight:500}
 .oog-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin:1px}
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
         </button>
         <div class="help-card">
           <h4>도움말</h4>
-          <p>규격 단위는 mm, 중량은 kg. <b style="color:#93C5FD">(cm)</b> 컬럼 자동 x10 변환. 헤더는 최대 20행 자동 탐지.</p>
+          <p>규격 단위는 mm, 중량 단위는 kg. (cm) 컬럼은 자동 x10 변환. 헤더 최대 20행 자동 탐지.</p>
           <a href="#">가이드 문서 보기 →</a>
           <div class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
         </div>
@@ -250,8 +250,8 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
           <tbody id="mapTableBody"></tbody>
         </table>
         <div class="mapping-tip">
-          <span><b>Tip:</b> 컬럼명에 (cm) 포함시 x10 자동변환. Dimension Cm, G.V. 등 지원.</span>
-          <div class="tip-links"><span class="tip-link" onclick="resetMapping()">초기화</span><span class="tip-link" onclick="loadSample()">샘플 데이터 적용</span></div>
+          <span><b>Tip:</b> 컬럼명이 유사한 경우 시스템이 자동 연결합니다. (Dimension Cm, G.V. 등 지원)</span>
+          <div class="tip-links"><span class="tip-link" onclick="resetMapping()">초기화</span><span class="tip-link" onclick="loadSampleInMapping()">샘플 데이터 적용</span></div>
         </div>
       </div>
     </div>
@@ -281,7 +281,7 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
     <div class="result-card">
       <div class="result-card-header">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--blue)"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>화물 상세 — 컨테이너 배정 결과</h3>
-        <span class="header-meta" id="detailMeta" style="color:var(--danger);font-weight:600">검수 필요 (Double Check)</span>
+        <span class="header-meta" id="detailMeta" style="color:var(--danger);font-weight:600">⚠ 검수 필요 (Double Check)</span>
       </div>
       <div class="table-scroll">
         <table class="data-table">
@@ -322,15 +322,15 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
           <span id="m3d-title" style="font-size:12px;color:#64748B;"></span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
-          <div id="m3d-tabs" style="display:flex;gap:4px;flex-wrap:wrap;"></div>
+          <div id="m3d-tabs" style="display:flex;gap:4px;"></div>
           <button onclick="close3D()" style="width:28px;height:28px;background:rgba(255,255,255,.08);border:none;border-radius:6px;cursor:pointer;color:#94A3B8;font-size:16px;display:grid;place-items:center;">✕</button>
         </div>
       </div>
-      <div style="flex:1;position:relative;min-height:480px;">
+      <div style="flex:1;position:relative;min-height:420px;">
         <canvas id="canvas3d" style="width:100%;height:100%;display:block;"></canvas>
-        <div id="m3d-legend" style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:2;"></div>
+        <div id="m3d-legend" style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:2;"></div>
         <div style="position:absolute;bottom:10px;right:12px;font-size:10px;color:#475569;">드래그: 회전 · 휠: 줌 · 우클릭: 이동</div>
-        <div id="m3d-stats" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:1.8;text-align:right;"></div>
+        <div id="m3d-stats" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:1.8;text-align:right;"></div>
       </div>
     </div>
   </div>
@@ -345,18 +345,19 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
 const CONTAINERS={"20GP":{L:5895,W:2350,H:2392,maxCBM:33.2,maxGW:21700},"40GP":{L:12030,W:2350,H:2392,maxCBM:67.7,maxGW:26680},"40HC":{L:12030,W:2350,H:2695,maxCBM:76.4,maxGW:26480},"20FR":{L:5620,W:2240,H:2233,maxGW:30480},"40FR":{L:12080,W:2228,H:2000,maxGW:40000}};
 const FIELDS=[{key:"item",label:"Item",req:true},{key:"qty",label:"Qty",req:true},{key:"length",label:"Length (L)",req:true,dim:true},{key:"width",label:"Width (W)",req:true,dim:true},{key:"height",label:"Height (H)",req:true,dim:true},{key:"gw",label:"Weight",req:true},{key:"cbm",label:"CBM",req:false}];
 const KW={
-  item:   ["item","item","product","cargo","name","main item","description","desc"],
-  qty:    ["qty","quantity","pcs","pieces","ea","count"],
-  length: ["length","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long","(cm) length","cm.*length","dimension.*length"],
-  width:  ["width","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide","(cm) wide","(cm) width","cm.*wide"],
-  height: ["height","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high","(cm) height","cm.*height"],
-  cbm:    ["cbm","volume","m3","cbm(m3)","g.v","g.v.","gv(cbm)"],
-  gw:     ["g.w","gw","gross","weight","g.w(kg)","gw(kg)","gross weight","g.w.","gross wt","(kgs)"],
+  item:   ["item","품목","description","desc","cargo","name","품명","화물명","main item","product"],
+  qty:    ["qty","quantity","수량","pcs","pieces","ea","count"],
+  length: ["length","길이","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long","(cm) length","cm.*length","dimension.*length"],
+  width:  ["width","너비","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide","(cm) wide","(cm) width","cm.*wide"],
+  height: ["height","높이","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high","(cm) height","cm.*height"],
+  cbm:    ["cbm","volume","부피","m3","cbm(m3)","g.v","g.v.","gv(cbm)","체적","용적"],
+  gw:     ["g.w","gw","gross","weight","중량","g.w(kg)","gw(kg)","gross weight","g.w.","총중량","gross wt","(kgs)"],
 };
 let rawData=[],headers=[],fieldMap={},_fn="",_unitMap={};
 
+// ── Packing List Form 다운로드 (zipfile로 직접 생성한 정상 파일) ──
 (function(){
-  const b64="UEsDBBQAAAAIAI8B0VxGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAI8B0VysXXIr7gAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAxQAAAAIAI8B0VyZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeABAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQDFAAAAAgAjwHRXIMplz7VBwAAQioAABgAAAAAAAAAAAAAAICBIQgAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAIAI8B0VxUhxXoFwQAADwSAAAYAAAAAAAAAAAAAACAgSwQAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACACPAdFcxlwchdcDAADDDAAAGAAAAAAAAAAAAAAAgIF5FAAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAjwHRXJufKqQYBAAAEiIAAA0AAAAAAAAAAAAAAIABhhgAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACACPAdFcl4q7HMAAAAATAgAACwAAAAAAAAAAAAAAgAHJHAAAX3JlbHMvLnJlbHNQSwECFAMUAAAACACPAdFc9z4Eo4sBAABYAwAADwAAAAAAAAAAAAAAgAGyHQAAeGwvd29ya2Jvb2sueG1sUEsBAhQDFAAAAAgAjwHRXLts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIABah8AAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQDFAAAAAgAjwHRXKb8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIABXCAAAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAsACwDKAgAAsCEAAAAA";
+  const b64="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";
   const bin=atob(b64),bytes=new Uint8Array(bin.length);
   for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
   document.getElementById("formDownloadLink").href=URL.createObjectURL(new Blob([bytes],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
@@ -399,7 +400,7 @@ function readFile(file){
     });
     const itemColIdx=headers.findIndex(h=>{
       const hL=h.toLowerCase().trim();
-      return ["item","product","cargo","name","description","desc","main item"].some(kw=>hL.includes(kw));
+      return ["item","품목","description","desc","cargo","name","품명","화물명","main item"].some(kw=>hL.includes(kw));
     });
     rawData=json.slice(headerRow+1).filter(r=>{
       const filled=r.filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
@@ -439,26 +440,29 @@ function showMapping(){
 
 function renderMapTable(){
   const matched=Object.values(fieldMap).filter(v=>v).length;
-  document.getElementById("mappingStatus").textContent=FIELDS.length+"개 필드 중 "+matched+"개 자동 매핑됨";
+  document.getElementById("mappingStatus").textContent=`${FIELDS.length}개 필드 중 ${matched}개 자동 매핑됨`;
   let html="",prevDim=false;
   FIELDS.forEach(f=>{
-    if(f.dim&&!prevDim){html+='<tr><td colspan="4" class="dim-label">DIMENSIONS (MM)</td></tr>';prevDim=true;}
+    if(f.dim&&!prevDim){html+=`<tr><td colspan="4" class="dim-label">DIMENSIONS (MM)</td></tr>`;prevDim=true;}
     const sel=fieldMap[f.key]||"";
     const colIdx=headers.indexOf(sel);
     const pv=colIdx>=0?(rawData[0]||[])[colIdx]:"";
-    const unitBadge=colIdx>=0&&_unitMap[colIdx]?' <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:3px">'+_unitMap[colIdx].toUpperCase()+'->MM</span>':"";
-    html+='<tr><td><span class="field-label">'+f.label+(f.req?'<span class="req">*</span>':'')+'</span></td>';
-    html+='<td><select class="map-select'+(!sel&&f.req?" missing":"") +'" onchange="fieldMap[\''+f.key+'\']=this.value;renderMapTable()">';
-    html+='<option value="">-- 선택하세요 --</option>';
-    headers.forEach(h=>{html+='<option value="'+h+'"'+(sel===h?" selected":"")+'>'+h+'</option>';});
-    html+='</select>'+unitBadge+'</td>';
-    html+='<td class="preview-val">'+(pv||"-")+'</td>';
-    html+='<td>'+(sel?'<span class="status-chip chip-matched">MATCHED</span>':f.req?'<span class="status-chip chip-required">REQUIRED</span>':'<span class="status-chip" style="background:#F1F5F9;color:#94A3B8">OPTIONAL</span>')+'</td></tr>';
+    const unitBadge=colIdx>=0&&_unitMap[colIdx]?` <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:3px">${_unitMap[colIdx].toUpperCase()}→MM</span>`:"";
+    html+=`<tr>
+      <td><span class="field-label">${f.label}${f.req?'<span class="req">*</span>':''}</span></td>
+      <td><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
+        <option value="">-- 선택하세요 --</option>
+        ${headers.map(h=>`<option value="${h}"${sel===h?" selected":""}>${h}</option>`).join("")}
+      </select>${unitBadge}</td>
+      <td class="preview-val">${pv||"-"}</td>
+      <td>${sel?'<span class="status-chip chip-matched">MATCHED</span>':f.req?'<span class="status-chip chip-required">REQUIRED</span>':'<span class="status-chip" style="background:#F1F5F9;color:#94A3B8">OPTIONAL</span>'}</td>
+    </tr>`;
   });
   document.getElementById("mapTableBody").innerHTML=html;
 }
 
 function resetMapping(){fieldMap=autoMap(headers);renderMapTable();}
+function loadSampleInMapping(){loadSample();}
 
 function loadSample(){
   headers=["Item Description","Qty","Length(mm)","Width(mm)","Height(mm)","CBM","G.W(kg)"];
@@ -477,12 +481,12 @@ function isOOG(L,W,H){
 function classifyOOG(L,W,H,GW){
   const f20=CONTAINERS["20FR"],f40=CONTAINERS["40FR"];
   const oH=H>2695,oW=W>2350,oL=L>12030,owmm=oW?W-2350:0;
-  if(oH&&!oW&&!oL&&H<=4000)return{type:"OT",label:"20'OT",badgeClass:"badge-ot",remark:"Over Height only. OT(Open Top) applicable."};
-  if(L<=f20.L&&W<=(f20.W+1000)&&H<=(f20.H+1000)&&GW<=f20.maxGW){const s=oW?Math.ceil((W-f20.W)/2):0;return{type:"20FR",label:"20'FR",badgeClass:"badge-fr",remark:"20'FR applicable."+(oW?" Over-width ~"+s+"mm per side.":"")};}
-  if(L<=f40.L&&W<=(f40.W+1000)&&H<=(f40.H+1000)&&GW<=f40.maxGW){const s=oW?Math.ceil((W-f40.W)/2):0;return{type:"40FR",label:"40'FR",badgeClass:"badge-fr",remark:"40'FR applicable."+(oW?" Over-width ~"+s+"mm per side.":"")};}
-  if(L<=24000&&GW<=f40.maxGW)return{type:"40FR*2",label:"40'FR x2",badgeClass:"badge-double-fr",remark:"Double FR required. Carrier pre-approval mandatory."};
-  const r=[];if(L>24000)r.push("L:"+L+"mm");if(GW>f40.maxGW)r.push("GW:"+GW+"kg");if(owmm>1200)r.push("W:"+Math.ceil(owmm/2)+"mm/side");
-  return{type:"BREAKBULK",label:"Breakbulk",badgeClass:"badge-bulk",remark:"Container not possible. Breakbulk vessel required. "+r.join(" / ")};
+  if(oH&&!oW&&!oL&&H<=4000)return{type:"OT",label:"20'OT",badgeClass:"badge-ot",remark:"높이만 초과. OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버."};
+  if(L<=f20.L&&W<=(f20.W+1000)&&H<=(f20.H+1000)&&GW<=f20.maxGW){const s=oW?Math.ceil((W-f20.W)/2):0;return{type:"20FR",label:"20'FR",badgeClass:"badge-fr",remark:`20'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고 필요.`:""}`};}
+  if(L<=f40.L&&W<=(f40.W+1000)&&H<=(f40.H+1000)&&GW<=f40.maxGW){const s=oW?Math.ceil((W-f40.W)/2):0;return{type:"40FR",label:"40'FR",badgeClass:"badge-fr",remark:`40'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고.`:""}`};}
+  if(L<=24000&&GW<=f40.maxGW)return{type:"40FR×2",label:"40'FR×2 (선사 협의 필요)",badgeClass:"badge-double-fr",remark:"40'FR 2개 연결(Double FR) 방식. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요."};
+  const r=[];if(L>24000)r.push(`길이 ${L}mm`);if(GW>f40.maxGW)r.push(`중량 ${GW.toLocaleString()}kg`);if(owmm>1200)r.push(`너비 편측 ${Math.ceil(owmm/2)}mm`);
+  return{type:"BREAKBULK",label:"Breakbulk",badgeClass:"badge-bulk",remark:`컨테이너 선적 불가 — Breakbulk 전용 선박 필요. 사유: ${r.join(" / ")}`};
 }
 
 function getVal(row,key){
@@ -504,7 +508,7 @@ function toNum(v){const n=parseFloat(String(v).replace(/,/g,""));return isNaN(n)
 function runCalc(){
   const norm=[],oog=[];
   rawData.forEach((row,i)=>{
-    const item=getVal(row,"item")||("Item "+(i+1));
+    const item=getVal(row,"item")||`Item ${i+1}`;
     const qty=toNum(getVal(row,"qty"))||1;
     const L=toNum(getVal(row,"length")),W=toNum(getVal(row,"width")),H=toNum(getVal(row,"height"));
     let cbm=toNum(getVal(row,"cbm"));
@@ -512,7 +516,7 @@ function runCalc(){
     if(!cbm&&L&&W&&H)cbm=+(L/1000*W/1000*H/1000*qty).toFixed(4);
     const issues=(L&&W&&H)?isOOG(L,W,H):[];
     const gwT=gw*qty||gw;
-    const c={idx:i+1,item:item,qty:qty,L:L,W:W,H:H,cbm:cbm,gw:gwT,issues:issues,fr:"",frLabel:"",remark:"",badgeClass:""};
+    const c={idx:i+1,item,qty,L,W,H,cbm,gw:gwT,issues,fr:"",frLabel:"",remark:"",badgeClass:""};
     if(issues.length>0){const cls=classifyOOG(L,W,H,gwT);c.fr=cls.type;c.frLabel=cls.label;c.remark=cls.remark;c.badgeClass=cls.badgeClass;oog.push(c);}
     else norm.push(c);
   });
@@ -538,19 +542,26 @@ function renderResults(norm,oog,plan,totalCBM,totalGW){
   const all=[...norm,...oog];
   const cbmR=(totalCBM/(plan.capCBM*.9)*100).toFixed(1);
   let ph="";
-  ph+='<div class="plan-card selected"><div class="plan-label">STANDARD PLAN A</div>';
-  ph+=plan.n40hc?'<div class="plan-value">'+plan.n40hc+'<span class="plan-type"> x 40\'HC</span></div>':plan.n40gp?'<div class="plan-value">'+plan.n40gp+'<span class="plan-type"> x 40\'GP</span></div>':'<div class="plan-value">'+plan.n20gp+'<span class="plan-type"> x 20\'GP</span></div>';
-  ph+='<div class="plan-rate">Load rate: '+cbmR+'%</div></div>';
-  if(plan.n40hc&&plan.n40gp)ph+='<div class="plan-card"><div class="plan-label">STANDARD PLAN B</div><div class="plan-value">'+plan.n40gp+'<span class="plan-type"> x 40\'GP</span></div><div class="plan-rate">'+( totalCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)+'%</div></div>';
-  if(plan.n40hc>1)ph+='<div class="plan-card"><div class="plan-label">HYBRID PLAN</div><div class="plan-value" style="font-size:20px">'+Math.ceil(plan.n40hc/2)+'x40HC + '+(plan.n40hc-Math.ceil(plan.n40hc/2))+'x40GP</div><div class="plan-rate">'+cbmR+'%</div></div>';
-  else ph+='<div class="plan-card"><div class="plan-label">CBM TOTAL</div><div class="plan-value">'+totalCBM.toFixed(1)+'<span class="plan-type"> m3</span></div><div class="plan-rate">'+( totalGW/1000).toFixed(1)+'t</div></div>';
-  ph+='<div class="plan-3d" onclick="open3D()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>3D View</span></div>';
+  ph+=`<div class="plan-card selected"><div class="plan-label">STANDARD PLAN A</div>`;
+  ph+=plan.n40hc?`<div class="plan-value">${plan.n40hc}<span class="plan-type"> × 40'HC</span></div>`:plan.n40gp?`<div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div>`:`<div class="plan-value">${plan.n20gp}<span class="plan-type"> × 20'GP</span></div>`;
+  ph+=`<div class="plan-rate">적재율: ${cbmR}%</div></div>`;
+  if(plan.n40hc&&plan.n40gp)ph+=`<div class="plan-card"><div class="plan-label">STANDARD PLAN B</div><div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div><div class="plan-rate">적재율: ${(totalCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)}%</div></div>`;
+  if(plan.n40hc>1)ph+=`<div class="plan-card"><div class="plan-label">HYBRID PLAN</div><div class="plan-value" style="font-size:20px">${Math.ceil(plan.n40hc/2)}×40'HC + ${plan.n40hc-Math.ceil(plan.n40hc/2)}×40'GP</div><div class="plan-rate">적재율: ${cbmR}%</div></div>`;
+  else ph+=`<div class="plan-card"><div class="plan-label">CBM 기준</div><div class="plan-value">${totalCBM.toFixed(1)}<span class="plan-type"> m³</span></div><div class="plan-rate">중량: ${(totalGW/1000).toFixed(1)}t</div></div>`;
+  ph+=`<div class="plan-3d" onclick="open3D()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>3D 시각화 보기</span></div>`;
   document.getElementById("planGrid").innerHTML=ph;
 
   if(oog.length>0){
     document.getElementById("oogCard").style.display="";
-    document.getElementById("oogMeta").textContent="Criteria: 1.Normal > 2.OT > 3.20FR > 4.40FR > 5.40FRx2 > 6.BB";
-    document.getElementById("oogBody").innerHTML=oog.map(c=>'<tr class="oog-row"><td class="item-name">'+c.item+'</td><td class="dim-val">'+c.L.toLocaleString()+'</td><td class="dim-val">'+c.W.toLocaleString()+'</td><td class="dim-val">'+c.H.toLocaleString()+'</td><td class="gw-val">'+c.gw.toLocaleString()+'</td><td>'+(c.issues.length>1?'<span class="oog-tag tag-multi">L,W,H</span>':c.issues.map(i=>'<span class="oog-tag '+i.cls+'">'+i.t+'</span>').join(""))+'</td><td><span class="badge '+c.badgeClass+'">'+c.frLabel+'</span></td><td class="remark-cell'+(c.type==="BREAKBULK"?" remark-red":"")+'">'+c.remark+'</td></tr>').join("");
+    document.getElementById("oogMeta").textContent="판정 기준: ① 일반 → ② OT → ③ 20'FR → ④ 40'FR → ⑤ 40'FR×2 → ⑥ BB";
+    document.getElementById("oogBody").innerHTML=oog.map(c=>`<tr class="oog-row">
+      <td class="item-name">${c.item}</td>
+      <td class="dim-val">${c.L.toLocaleString()}</td><td class="dim-val">${c.W.toLocaleString()}</td><td class="dim-val">${c.H.toLocaleString()}</td>
+      <td class="gw-val">${c.gw.toLocaleString()}</td>
+      <td>${c.issues.length>1?'<span class="oog-tag tag-multi">L, W, H</span>':c.issues.map(i=>`<span class="oog-tag ${i.cls}">${i.t}</span>`).join("")}</td>
+      <td><span class="badge ${c.badgeClass}">${c.frLabel}</span></td>
+      <td class="remark-cell ${c.type==="BREAKBULK"?"remark-red":""}">${c.remark}</td>
+    </tr>`).join("");
   }
 
   const assigned=assignContainers(norm,plan);
@@ -558,12 +569,18 @@ function renderResults(norm,oog,plan,totalCBM,totalGW){
   document.getElementById("detailBody").innerHTML=all.map(c=>{
     const isOog=c.issues&&c.issues.length>0;
     let ac;
-    if(isOog){ac='<span class="badge '+c.badgeClass+'">'+c.frLabel+'</span>';}
-    else{const a=assigned[c.idx];if(a&&a!=="배정 필요"){const m=a.match(/^(\S+)\s#(\d+)$/);ac=m?'<span class="cntr-chip">CNTR-'+m[2]+'</span> <span style="font-weight:600">'+m[1]+'</span>':'<span class="badge badge-general">'+a+'</span>';}else ac='<span class="badge badge-bulk">배정 필요</span>';}
-    return '<tr'+(isOog?" class='oog-row'":"")+'><td class="num-col">'+String(c.idx).padStart(3,"0")+'</td><td class="item-name">'+c.item+'</td><td class="qty-val">'+c.qty+'</td><td class="dim-val">'+(c.L&&c.W&&c.H?c.L.toLocaleString()+" x "+c.W.toLocaleString()+" x "+c.H.toLocaleString():"-")+'</td><td class="cbm-val">'+c.cbm.toFixed(2)+'</td><td class="gw-val">'+c.gw.toLocaleString()+'</td><td>'+ac+'</td><td class="remark-cell'+(isOog&&c.type==="BREAKBULK"?" remark-red":"")+'">'+( isOog?c.remark:"-")+'</td></tr>';
+    if(isOog){ac=`<span class="badge ${c.badgeClass}">${c.frLabel}</span>`;}
+    else{const a=assigned[c.idx];if(a&&a!=="배정 필요"){const m=a.match(/^(\S+)\s#(\d+)$/);ac=m?`<span class="cntr-chip">CNTR-${m[2]}</span> <span style="font-weight:600">${m[1]}</span>`:`<span class="badge badge-general">${a}</span>`;}else ac=`<span class="badge badge-bulk">배정 필요</span>`;}
+    return `<tr ${isOog?"class='oog-row'":""}>
+      <td class="num-col">${String(c.idx).padStart(3,"0")}</td>
+      <td class="item-name">${c.item}</td><td class="qty-val">${c.qty}</td>
+      <td class="dim-val">${c.L&&c.W&&c.H?`${c.L.toLocaleString()} × ${c.W.toLocaleString()} × ${c.H.toLocaleString()}`:"-"}</td>
+      <td class="cbm-val">${c.cbm.toFixed(2)}</td><td class="gw-val">${c.gw.toLocaleString()}</td>
+      <td>${ac}</td>
+      <td class="remark-cell ${isOog&&c.type==="BREAKBULK"?"remark-red":""}">${isOog?c.remark:"-"}</td>
+    </tr>`;
   }).join("");
-
-  window._exportData={all:all,oog:oog,plan:plan,totalCBM:totalCBM,totalGW:totalGW,assigned:assigned};
+  window._exportData={all,oog,plan,totalCBM:totalCBM,totalGW:totalGW,assigned:assigned};
 }
 
 function assignContainers(norm,plan){
@@ -572,18 +589,18 @@ function assignContainers(norm,plan){
   if(plan.n40gp)for(let i=0;i<plan.n40gp;i++)slots.push({type:"40GP",rem:CONTAINERS["40GP"].maxCBM*.9,gwRem:CONTAINERS["40GP"].maxGW});
   if(plan.n20gp)for(let i=0;i<plan.n20gp;i++)slots.push({type:"20GP",rem:CONTAINERS["20GP"].maxCBM*.9,gwRem:CONTAINERS["20GP"].maxGW});
   [...norm].sort((a,b)=>b.cbm-a.cbm).forEach(c=>{
-    for(const slot of slots){if(slot.rem>=c.cbm&&slot.gwRem>=c.gw){slot.rem-=c.cbm;slot.gwRem-=c.gw;assigned[c.idx]=slot.type+" #"+slots.indexOf(slot)+1;break;}}
+    for(const slot of slots){if(slot.rem>=c.cbm&&slot.gwRem>=c.gw){slot.rem-=c.cbm;slot.gwRem-=c.gw;assigned[c.idx]=`${slot.type} #${slots.indexOf(slot)+1}`;break;}}
     if(!assigned[c.idx])assigned[c.idx]="배정 필요";
   });
   return assigned;
 }
 
-// ── 엑셀 다운로드: XLSX.write + Blob 방식 (XLSX.writeFile 대신) ──
+// ── 엑셀 다운로드: XLSX.write + Blob 방식 ──
 function exportExcel(){
   if(!window._exportData){alert("먼저 CLP 계산을 실행해주세요.");return;}
   const ed=window._exportData;
-  const all=ed.all||[], plan=ed.plan||{}, assigned=ed.assigned||{};
-  const totalCBM=ed.totalCBM||0, totalGW=ed.totalGW||0;
+  const all=ed.all||[],plan=ed.plan||{},assigned=ed.assigned||{};
+  const totalCBM=ed.totalCBM||0,totalGW=ed.totalGW||0;
   try{
     const wb=XLSX.utils.book_new();
     const summary=[
@@ -604,8 +621,7 @@ function exportExcel(){
     all.forEach(c=>{
       const isOog=!!(c.issues&&c.issues.length>0);
       const issues=c.issues||[];
-      d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",
-        +c.cbm.toFixed(3),c.gw,
+      d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",+c.cbm.toFixed(3),c.gw,
         isOog?"-":(assigned[c.idx]||"-"),
         isOog?(c.frLabel||"-"):"-",
         isOog?issues.map(i=>i.t||"").join(", "):"-",
@@ -613,7 +629,6 @@ function exportExcel(){
       ]);
     });
     XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(d),"Detail");
-    // ── Blob 방식으로 다운로드 (XLSX.writeFile 미사용) ──
     const wbout=XLSX.write(wb,{bookType:"xlsx",type:"array"});
     const blob=new Blob([wbout],{type:"application/octet-stream"});
     const url=URL.createObjectURL(blob);
@@ -622,10 +637,10 @@ function exportExcel(){
     a.download="CLP_Result_"+new Date().toISOString().slice(0,10)+".xlsx";
     document.body.appendChild(a);
     a.click();
-    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},300);
+    setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},300);
   }catch(err){
-    alert("Download error: "+err.message);
-    console.error("exportExcel error:",err);
+    alert("엑셀 다운로드 오류: "+err.message);
+    console.error(err);
   }
 }
 
@@ -642,28 +657,28 @@ function open3D(){
   if(!window._exportData){alert("먼저 CLP 계산을 실행해주세요.");return;}
   document.getElementById("modal3d").style.display="";
   document.body.style.overflow="hidden";
-  setTimeout(function(){init3D();},60);
+  setTimeout(()=>init3D(),60);
 }
 function close3D(){
   document.getElementById("modal3d").style.display="none";
   document.body.style.overflow="";
   if(_three){cancelAnimationFrame(_three.raf);_three.renderer.dispose();_three=null;}
 }
-document.getElementById("modal3d").addEventListener("click",function(e){if(e.target===e.currentTarget)close3D();});
+document.getElementById("modal3d").addEventListener("click",e=>{if(e.target===e.currentTarget)close3D();});
 
 function init3D(){
-  const all=window._exportData.all, oog=window._exportData.oog, assigned=window._exportData.assigned;
+  const{all,oog,assigned}=window._exportData;
   const slots={};
-  all.filter(function(c){return!(c.issues&&c.issues.length>0);}).forEach(function(c){const k=assigned[c.idx]||"Unassigned";if(!slots[k])slots[k]=[];slots[k].push(c);});
-  oog.forEach(function(c){const k="OOG: "+c.frLabel;if(!slots[k])slots[k]=[];slots[k].push(c);});
+  all.filter(c=>!(c.issues&&c.issues.length>0)).forEach(c=>{const k=assigned[c.idx]||"미배정";if(!slots[k])slots[k]=[];slots[k].push(c);});
+  oog.forEach(c=>{const k="OOG: "+c.frLabel;if(!slots[k])slots[k]=[];slots[k].push(c);});
   const keys=Object.keys(slots);
   const tabsEl=document.getElementById("m3d-tabs");
   tabsEl.innerHTML="";
-  keys.forEach(function(k,i){
+  keys.forEach((k,i)=>{
     const btn=document.createElement("button");
     btn.textContent=k;
-    btn.style.cssText="padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:"+(i===0?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)")+";color:#fff;margin-bottom:2px;";
-    btn.onclick=function(){tabsEl.querySelectorAll("button").forEach(function(b,j){b.style.background=j===i?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)";});render3DSlot(k,slots[k]);};
+    btn.style.cssText=`padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:${i===0?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)"};color:#fff;margin-bottom:2px;`;
+    btn.onclick=()=>{tabsEl.querySelectorAll("button").forEach((b,j)=>{b.style.background=j===i?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)";});render3DSlot(k,slots[k]);};
     tabsEl.appendChild(btn);
   });
   render3DSlot(keys[0],slots[keys[0]]);
@@ -682,7 +697,7 @@ function render3DSlot(slotKey,cargos){
   else if(slotKey.includes("FR"))ctype="40FR";
   const cSpec=CONTAINERS[ctype]||{L:12030,W:2350,H:2695};
   const CL=cSpec.L/1000,CW=cSpec.W/1000,CH=cSpec.H/1000;
-  const renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
   renderer.setSize(w,h);renderer.setClearColor(0x0d1b2a,1);renderer.shadowMap.enabled=true;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(50,w/h,.01,500);
@@ -695,43 +710,43 @@ function render3DSlot(slotKey,cargos){
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(CL,CW),new THREE.MeshStandardMaterial({color:0x1e293b,roughness:.9}));
   fl.rotation.x=-Math.PI/2;fl.position.set(CL/2,.001,CW/2);fl.receiveShadow=true;scene.add(fl);
   const wm=new THREE.MeshStandardMaterial({color:0x1e3a5f,transparent:true,opacity:.1});
-  [[CL,CH,.02,CL/2,CH/2,CW],[CL,CH,.02,CL/2,CH/2,0],[.02,CH,CW,0,CH/2,CW/2],[.02,CH,CW,CL,CH/2,CW/2]].forEach(function(p){const m=new THREE.Mesh(new THREE.BoxGeometry(p[0],p[1],p[2]),wm);m.position.set(p[3],p[4],p[5]);scene.add(m);});
+  [[CL,CH,.02,CL/2,CH/2,CW],[CL,CH,.02,CL/2,CH/2,0],[.02,CH,CW,0,CH/2,CW/2],[.02,CH,CW,CL,CH/2,CW/2]].forEach(([lx,ly,lz,px,py,pz])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(lx,ly,lz),wm);m.position.set(px,py,pz);scene.add(m);});
   const palette=[0xE30613,0x0059a8,0x10B981,0xF59E0B,0x8B5CF6,0xEC4899,0x06B6D4,0x84CC16,0xF97316,0x6366F1];
   const placed=[];let cx=0,cz=0,rowMaxZ=0;const PAD=.02;
-  [...cargos].sort(function(a,b){return b.cbm-a.cbm;}).forEach(function(c,ci){
+  [...cargos].sort((a,b)=>b.cbm-a.cbm).forEach((c,ci)=>{
     const bL=(c.L||500)/1000,bW=(c.W||500)/1000,bH=(c.H||500)/1000;
     if(cx+bL>CL+.1){cx=0;cz+=rowMaxZ+PAD;rowMaxZ=0;}
     if(cz+bW>CW+.1){cx=0;cz=0;}
     const color=palette[ci%palette.length];
-    const box=new THREE.Mesh(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD),new THREE.MeshStandardMaterial({color:color,roughness:.6,transparent:true,opacity:.85}));
+    const box=new THREE.Mesh(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD),new THREE.MeshStandardMaterial({color,roughness:.6,transparent:true,opacity:.85}));
     box.position.set(cx+bL/2,bH/2,cz+bW/2);box.castShadow=true;scene.add(box);
     const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.2}));
     edges.position.copy(box.position);scene.add(edges);
-    placed.push({item:c.item,color:color});cx+=bL+PAD;if(bW>rowMaxZ)rowMaxZ=bW;
+    placed.push({item:c.item,color});cx+=bL+PAD;if(bW>rowMaxZ)rowMaxZ=bW;
   });
-  document.getElementById("m3d-legend").innerHTML=placed.slice(0,8).map(function(b){return'<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#'+b.color.toString(16).padStart(6,"0")+';flex-shrink:0"></span>'+b.item+'</div>';}).join("")+(placed.length>8?'<div style="color:#64748B">+ '+(placed.length-8)+' more</div>':"");
-  const tc=cargos.reduce(function(s,c){return s+c.cbm;},0),tg=cargos.reduce(function(s,c){return s+c.gw;},0);
-  document.getElementById("m3d-stats").innerHTML="<div>"+slotKey+"</div><div>"+cargos.length+" items</div><div>CBM "+tc.toFixed(2)+"</div><div>G.W "+tg.toLocaleString()+"kg</div>";
-  document.getElementById("m3d-title").textContent=CL+"m x "+CW+"m x "+CH+"m";
+  document.getElementById("m3d-legend").innerHTML=placed.slice(0,8).map(b=>`<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#${b.color.toString(16).padStart(6,"0")};flex-shrink:0"></span>${b.item}</div>`).join("")+(placed.length>8?`<div style="color:#64748B">+ ${placed.length-8}개 더</div>`:"");
+  const tc=cargos.reduce((s,c)=>s+c.cbm,0),tg=cargos.reduce((s,c)=>s+c.gw,0);
+  document.getElementById("m3d-stats").innerHTML=`<div>${slotKey}</div><div>화물 ${cargos.length}건</div><div>CBM ${tc.toFixed(2)} m³</div><div>G.W ${tg.toLocaleString()} kg</div>`;
+  document.getElementById("m3d-title").textContent=`${CL}m × ${CW}m × ${CH}m`;
   let isDrag=false,isRight=false,px=0,py=0,theta=.4,phi=.9,radius=Math.sqrt(CL*CL+CW*CW)*2.2;
   const target=new THREE.Vector3(CL/2,CH/2,CW/2);
   function uc(){camera.position.set(target.x+radius*Math.sin(phi)*Math.sin(theta),target.y+radius*Math.cos(phi),target.z+radius*Math.sin(phi)*Math.cos(theta));camera.lookAt(target);}
   uc();
-  canvas.addEventListener("mousedown",function(e){isDrag=true;isRight=e.button===2;px=e.clientX;py=e.clientY;});
-  canvas.addEventListener("contextmenu",function(e){e.preventDefault();});
-  window.addEventListener("mouseup",function(){isDrag=false;});
-  window.addEventListener("mousemove",function(e){
+  canvas.addEventListener("mousedown",e=>{isDrag=true;isRight=e.button===2;px=e.clientX;py=e.clientY;});
+  canvas.addEventListener("contextmenu",e=>e.preventDefault());
+  window.addEventListener("mouseup",()=>isDrag=false);
+  window.addEventListener("mousemove",e=>{
     if(!isDrag)return;
     const dx=(e.clientX-px)*.008,dy=(e.clientY-py)*.008;
     if(isRight){target.x-=dx*radius*.5;target.y+=dy*radius*.5;}
     else{theta-=dx;phi=Math.max(.05,Math.min(Math.PI-.05,phi+dy));}
     px=e.clientX;py=e.clientY;uc();
   });
-  canvas.addEventListener("wheel",function(e){radius=Math.max(.5,Math.min(50,radius+e.deltaY*.012));uc();e.preventDefault();},{passive:false});
-  const ro=new ResizeObserver(function(){const nw=canvas.parentElement.offsetWidth||800,nh=canvas.parentElement.offsetHeight||480;renderer.setSize(nw,nh);camera.aspect=nw/nh;camera.updateProjectionMatrix();});
+  canvas.addEventListener("wheel",e=>{radius=Math.max(.5,Math.min(50,radius+e.deltaY*.012));uc();e.preventDefault();},{passive:false});
+  const ro=new ResizeObserver(()=>{const nw=canvas.parentElement.offsetWidth||800,nh=canvas.parentElement.offsetHeight||480;renderer.setSize(nw,nh);camera.aspect=nw/nh;camera.updateProjectionMatrix();});
   ro.observe(canvas.parentElement);
   function animate(){const raf=requestAnimationFrame(animate);renderer.render(scene,camera);if(_three)_three.raf=raf;}
-  _three={renderer:renderer,raf:null};animate();
+  _three={renderer,raf:null};animate();
 }
 </script>
 </body>
