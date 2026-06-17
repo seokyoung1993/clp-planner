@@ -25,13 +25,13 @@
   --r4:4px;--r8:8px;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
-nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 32px;gap:0;position:sticky;top:0;z-index:100}
+nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 32px;position:sticky;top:0;z-index:100}
 .nav-brand{display:flex;align-items:center;gap:10px;margin-right:40px;text-decoration:none}
 .nav-logo{width:32px;height:32px;background:var(--red);border-radius:var(--r4);display:grid;place-items:center}
 .nav-logo span{color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em}
 .nav-title h1{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.01em}
 .nav-title p{font-size:11px;color:var(--text-3);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.nav-tabs{display:flex;gap:0;flex:1}
+.nav-tabs{display:flex;flex:1}
 .nav-tab{padding:0 20px;height:60px;display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--text-2);border-bottom:2px solid transparent;cursor:default;transition:color .15s,border-color .15s;white-space:nowrap}
 .nav-tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
 .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
@@ -100,7 +100,7 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .field-label{font-weight:600;color:var(--text);display:flex;align-items:center;gap:4px}
 .req{color:var(--red);font-size:12px}
 .dim-label{font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;background:#F8FAFC;border-bottom:1px solid var(--border)}
-.map-select{width:100%;max-width:220px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r4);background:var(--surface);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer}
+.map-select{width:100%;max-width:260px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r4);background:var(--surface);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer}
 .map-select:focus{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
 .map-select.missing{border-color:var(--danger);background:var(--danger-bg)}
 .preview-val{font-size:13px;color:var(--text-2)}
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
         </button>
         <div class="help-card">
           <h4>도움말</h4>
-          <p>컬럼명에 <b style="color:#93C5FD">(cm)</b>이 포함되면 자동 ×10 mm변환. 헤더는 최대 20행 자동 탐지.</p>
+          <p>규격 단위는 mm, 중량은 kg. <b style="color:#93C5FD">(cm)</b> 컬럼 자동 ×10 변환. 헤더는 최대 20행 자동 탐지.</p>
           <a href="#">가이드 문서 보기 →</a>
           <div class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
         </div>
@@ -246,11 +246,11 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
       <div class="mapping-main">
         <div class="mapping-main-header"><h3>데이터 매핑 테이블</h3><span class="sync-dot">데이터 동기화됨</span></div>
         <table class="mapping-table">
-          <thead><tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기</th><th>상태</th></tr></thead>
+          <thead><tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기 (샘플)</th><th>상태</th></tr></thead>
           <tbody id="mapTableBody"></tbody>
         </table>
         <div class="mapping-tip">
-          <span><b>Tip:</b> 컬럼명에 <b>(cm)</b>이면 ×10, <b>(mm)</b>이면 변환없이 사용.</span>
+          <span><b>Tip:</b> 컬럼명에 <b>(cm)</b>이면 ×10 자동변환. Dimension Cm, G.V. 등 지원.</span>
           <div class="tip-links"><span class="tip-link" onclick="resetMapping()">초기화</span><span class="tip-link" onclick="loadSample()">샘플 데이터 적용</span></div>
         </div>
       </div>
@@ -355,6 +355,7 @@ const KW={
 };
 let rawData=[],headers=[],fieldMap={},_fn="",_unitMap={};
 
+// ── Packing List Form 다운로드 ──
 (function(){
   const b64="UEsDBBQAAAAIAI8B0VxGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAI8B0VysXXIr7gAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAxQAAAAIAI8B0VyZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeABAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQDFAAAAAgAjwHRXIMplz7VBwAAQioAABgAAAAAAAAAAAAAAICBIQgAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAIAI8B0VxUhxXoFwQAADwSAAAYAAAAAAAAAAAAAACAgSwQAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACACPAdFcxlwchdcDAADDDAAAGAAAAAAAAAAAAAAAgIF5FAAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAjwHRXJufKqQYBAAAEiIAAA0AAAAAAAAAAAAAAIABhhgAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACACPAdFcl4q7HMAAAAATAgAACwAAAAAAAAAAAAAAgAHJHAAAX3JlbHMvLnJlbHNQSwECFAMUAAAACACPAdFc9z4Eo4sBAABYAwAADwAAAAAAAAAAAAAAgAGyHQAAeGwvd29ya2Jvb2sueG1sUEsBAhQDFAAAAAgAjwHRXLts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIABah8AAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQDFAAAAAgAjwHRXKb8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIABXCAAAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAsACwDKAgAAsCEAAAAA";
   const bin=atob(b64),bytes=new Uint8Array(bin.length);
@@ -385,21 +386,36 @@ function readFile(file){
     const ws=wb.Sheets[wb.SheetNames[0]];
     const json=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
     if(json.length<2){alert("데이터가 없습니다.");return;}
+    // ── 헤더 자동 탐지: 유효 셀 3개 이상인 첫 번째 행 ──
     let headerRow=0;
     for(let i=0;i<Math.min(json.length,20);i++){
       const filled=json[i].filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
       if(filled.length>=3){headerRow=i;break;}
     }
     headers=json[headerRow].map(String);
+    // ── 단위 탐지 ──
     _unitMap={};
     headers.forEach((h,i)=>{
       const hL=h.toLowerCase();
       if(hL.includes("(cm)")||hL.includes("cm)")||hL.includes(" cm")){_unitMap[i]="cm";}
       else if((hL.includes("(m)")||hL.includes(" m)"))&&!hL.includes("mm")&&!hL.includes("cm")){_unitMap[i]="m";}
     });
+    // ── 데이터 필터: item 컬럼 비어있는 행·순수 숫자 행 제거 ──
+    const itemColIdx=headers.findIndex(h=>{
+      const hL=h.toLowerCase().trim();
+      return ["item","품목","description","desc","cargo","name","품명","화물명","main item"].some(kw=>hL.includes(kw));
+    });
     rawData=json.slice(headerRow+1).filter(r=>{
       const filled=r.filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
-      return filled.length>=2;
+      if(filled.length<1)return false;
+      if(itemColIdx>=0){
+        const v=r[itemColIdx];
+        if(v===null||v===undefined||String(v).trim()==="")return false;
+      }
+      // 모든 셀이 숫자면 합계행으로 판단 → 제거
+      const textCells=filled.filter(c=>isNaN(parseFloat(String(c).replace(/,/g,"")))||String(c).trim()==="");
+      if(textCells.length===0)return false;
+      return true;
     });
     fieldMap=autoMap(headers);showMapping();
   };
@@ -438,7 +454,7 @@ function renderMapTable(){
     const unitBadge=colIdx>=0&&_unitMap[colIdx]?` <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:3px">${_unitMap[colIdx].toUpperCase()}→MM</span>`:"";
     html+=`<tr>
       <td><span class="field-label">${f.label}${f.req?'<span class="req">*</span>':''}</span></td>
-      <td style="white-space:nowrap"><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
+      <td><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
         <option value="">-- 선택하세요 --</option>
         ${headers.map(h=>`<option value="${h}"${sel===h?" selected":""}>${h}</option>`).join("")}
       </select>${unitBadge}</td>
@@ -507,9 +523,9 @@ function runCalc(){
     if(issues.length>0){const cls=classifyOOG(L,W,H,gwT);c.fr=cls.type;c.frLabel=cls.label;c.remark=cls.remark;c.badgeClass=cls.badgeClass;oog.push(c);}
     else norm.push(c);
   });
-  const tCBM=norm.reduce((s,c)=>s+c.cbm,0),tGW=norm.reduce((s,c)=>s+c.gw,0);
-  const plan=optimizePlan(tCBM,tGW);
-  renderResults(norm,oog,plan,tCBM,tGW);
+  const totalCBM=norm.reduce((s,c)=>s+c.cbm,0),totalGW=norm.reduce((s,c)=>s+c.gw,0);
+  const plan=optimizePlan(totalCBM,totalGW);
+  renderResults(norm,oog,plan,totalCBM,totalGW);
   setStep(3);
 }
 
@@ -525,16 +541,16 @@ function optimizePlan(tCBM,tGW){
   return best;
 }
 
-function renderResults(norm,oog,plan,tCBM,tGW){
+function renderResults(norm,oog,plan,totalCBM,totalGW){
   const all=[...norm,...oog];
-  const cbmR=(tCBM/(plan.capCBM*.9)*100).toFixed(1);
+  const cbmR=(totalCBM/(plan.capCBM*.9)*100).toFixed(1);
   let ph="";
   ph+=`<div class="plan-card selected"><div class="plan-label">STANDARD PLAN A</div>`;
   ph+=plan.n40hc?`<div class="plan-value">${plan.n40hc}<span class="plan-type"> × 40'HC</span></div>`:plan.n40gp?`<div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div>`:`<div class="plan-value">${plan.n20gp}<span class="plan-type"> × 20'GP</span></div>`;
   ph+=`<div class="plan-rate">적재율: ${cbmR}%</div></div>`;
-  if(plan.n40hc&&plan.n40gp)ph+=`<div class="plan-card"><div class="plan-label">STANDARD PLAN B</div><div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div><div class="plan-rate">적재율: ${(tCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)}%</div></div>`;
+  if(plan.n40hc&&plan.n40gp)ph+=`<div class="plan-card"><div class="plan-label">STANDARD PLAN B</div><div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div><div class="plan-rate">적재율: ${(totalCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)}%</div></div>`;
   if(plan.n40hc>1)ph+=`<div class="plan-card"><div class="plan-label">HYBRID PLAN</div><div class="plan-value" style="font-size:20px">${Math.ceil(plan.n40hc/2)}×40'HC + ${plan.n40hc-Math.ceil(plan.n40hc/2)}×40'GP</div><div class="plan-rate">적재율: ${cbmR}%</div></div>`;
-  else ph+=`<div class="plan-card"><div class="plan-label">CBM 기준</div><div class="plan-value">${tCBM.toFixed(1)}<span class="plan-type"> m³</span></div><div class="plan-rate">중량: ${(tGW/1000).toFixed(1)}t</div></div>`;
+  else ph+=`<div class="plan-card"><div class="plan-label">CBM 기준</div><div class="plan-value">${totalCBM.toFixed(1)}<span class="plan-type"> m³</span></div><div class="plan-rate">중량: ${(totalGW/1000).toFixed(1)}t</div></div>`;
   ph+=`<div class="plan-3d" onclick="open3D()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>3D 시각화 보기</span></div>`;
   document.getElementById("planGrid").innerHTML=ph;
 
@@ -567,7 +583,8 @@ function renderResults(norm,oog,plan,tCBM,tGW){
       <td class="remark-cell ${isOog&&c.type==="BREAKBULK"?"remark-red":""}">${isOog?c.remark:"-"}</td>
     </tr>`;
   }).join("");
-  window._exportData={all,oog,plan,tCBM,tGW,assigned};
+  // ── _exportData는 반드시 명시적 키로 저장 ──
+  window._exportData={all:all,oog:oog,plan:plan,totalCBM:totalCBM,totalGW:totalGW,assigned:assigned};
 }
 
 function assignContainers(norm,plan){
@@ -582,13 +599,39 @@ function assignContainers(norm,plan){
   return assigned;
 }
 
+// ── exportExcel: _exportData에서 안전하게 꺼냄 ──
 function exportExcel(){
-  if(!window._exportData)return;
-  const{all,plan,tCBM,tGW,assigned}=window._exportData;
+  if(!window._exportData){alert("먼저 CLP 계산을 실행해주세요.");return;}
+  const ed=window._exportData;
+  const all=ed.all||[], plan=ed.plan||{}, assigned=ed.assigned||{};
+  const totalCBM=ed.totalCBM||0, totalGW=ed.totalGW||0;
   const wb=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([["CLP Planner — 결과 요약",""],["생성일시",new Date().toLocaleString("ko-KR")],["",""],["총 화물 건수",all.length],["총 CBM (m³)",+(tCBM||0).toFixed(3)],["총 G.W (kg)",(tGW||0)],["",""],["40'HC",plan.n40hc],["40'GP",plan.n40gp],["20'GP",plan.n20gp],["OOG / FR",all.filter(c=>c.issues?.length).length]]),"요약");
+  const summary=[
+    ["CLP Planner — 결과 요약",""],
+    ["생성일시",new Date().toLocaleString("ko-KR")],
+    ["",""],
+    ["총 화물 건수",all.length],
+    ["총 CBM (m³)",+totalCBM.toFixed(3)],
+    ["총 G.W (kg)",totalGW],
+    ["",""],
+    ["40'HC",plan.n40hc||0],
+    ["40'GP",plan.n40gp||0],
+    ["20'GP",plan.n20gp||0],
+    ["OOG / FR",all.filter(c=>c.issues&&c.issues.length>0).length],
+  ];
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(summary),"요약");
   const d=[["#","Item","Qty","L(mm)","W(mm)","H(mm)","CBM","G.W(kg)","배정/선적방식","선적타입","초과항목","Remark"]];
-  all.forEach(c=>{const isOog=c.issues?.length>0;d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",+c.cbm.toFixed(3),c.gw,isOog?"-":(assigned[c.idx]||"-"),isOog?c.frLabel:"-",isOog?c.issues.map(i=>i.t).join(", "):"-",isOog?c.remark:"-"]);});
+  all.forEach(c=>{
+    const isOog=!!(c.issues&&c.issues.length>0);
+    const issues=c.issues||[];
+    d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",
+      +c.cbm.toFixed(3),c.gw,
+      isOog?"-":(assigned[c.idx]||"-"),
+      isOog?(c.frLabel||"-"):"-",
+      isOog?issues.map(i=>i.t||"").join(", "):"-",
+      isOog?(c.remark||"-"):"-"
+    ]);
+  });
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(d),"화물 배정 상세");
   XLSX.writeFile(wb,`CLP_Result_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
@@ -635,8 +678,7 @@ function init3D(){
 
 function render3DSlot(slotKey,cargos){
   if(_three){cancelAnimationFrame(_three.raf);_three.renderer.dispose();_three=null;}
-  const THREE=window.THREE;
-  if(!THREE)return;
+  const THREE=window.THREE;if(!THREE)return;
   const canvas=document.getElementById("canvas3d");
   const w=canvas.parentElement.offsetWidth||800,h=canvas.parentElement.offsetHeight||480;
   canvas.width=w;canvas.height=h;
