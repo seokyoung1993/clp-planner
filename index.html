@@ -100,7 +100,7 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .field-label{font-weight:600;color:var(--text);display:flex;align-items:center;gap:4px}
 .req{color:var(--red);font-size:12px}
 .dim-label{font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;background:#F8FAFC;border-bottom:1px solid var(--border)}
-.map-select{width:100%;max-width:260px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r4);background:var(--surface);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer}
+.map-select{width:100%;max-width:220px;padding:7px 10px;border:1px solid var(--border);border-radius:var(--r4);background:var(--surface);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;cursor:pointer}
 .map-select:focus{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
 .map-select.missing{border-color:var(--danger);background:var(--danger-bg)}
 .preview-val{font-size:13px;color:var(--text-2)}
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
         </button>
         <div class="help-card">
           <h4>도움말</h4>
-          <p>컬럼명에 <b style="color:#93C5FD">(cm)</b>이 포함되면 자동으로 ×10 (mm 변환). 헤더는 최대 20행까지 자동 탐지.</p>
+          <p>컬럼명에 <b style="color:#93C5FD">(cm)</b>이 포함되면 자동 ×10 mm변환. 헤더는 최대 20행 자동 탐지.</p>
           <a href="#">가이드 문서 보기 →</a>
           <div class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
         </div>
@@ -246,11 +246,11 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
       <div class="mapping-main">
         <div class="mapping-main-header"><h3>데이터 매핑 테이블</h3><span class="sync-dot">데이터 동기화됨</span></div>
         <table class="mapping-table">
-          <thead><tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기 (샘플)</th><th>상태</th></tr></thead>
+          <thead><tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기</th><th>상태</th></tr></thead>
           <tbody id="mapTableBody"></tbody>
         </table>
         <div class="mapping-tip">
-          <span><b>Tip:</b> 컬럼명에 <b>(cm)</b>이 포함되면 ×10 자동 변환. <b>(mm)</b>이면 변환 없이 사용.</span>
+          <span><b>Tip:</b> 컬럼명에 <b>(cm)</b>이면 ×10, <b>(mm)</b>이면 변환없이 사용.</span>
           <div class="tip-links"><span class="tip-link" onclick="resetMapping()">초기화</span><span class="tip-link" onclick="loadSample()">샘플 데이터 적용</span></div>
         </div>
       </div>
@@ -355,9 +355,8 @@ const KW={
 };
 let rawData=[],headers=[],fieldMap={},_fn="",_unitMap={};
 
-// ── Packing List Form 다운로드 ──
 (function(){
-  const b64="UEsDBBQAAAAIACc00FxGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIACc00Fx0K4mA7gAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAxQAAAAIACc00FyZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeEBAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQDFAAAAAgAJzTQXEC3pFz8CQAAwDQAABgAAAAAAAAAAAAAAICBIggAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAIACc00Fx3a7yO5gQAAO8OAAAYAAAAAAAAAAAAAACAgVMSAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACAAnNNBcV3ahXqEFAABRFQAAGAAAAAAAAAAAAAAAgIF3FwAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAJzTQXGK5TMStBAAAIywAAA0AAAAAAAAAAAAAAIABThUAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACAAnNNBcl4q7HMAAAAATAgAACwAAAAAAAAAAAAAAgAEmGgAAX3JlbHMvLnJlbHNQSwECFAMUAAAACAAnNNBcwSfMX7gBAADAAwAADwAAAAAAAAAAAAAAgAEPGwAAeGwvd29ya2Jvb2sueG1sUEsBAhQDFAAAAAgAJzTQXLts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIAB9BwAAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQDFAAAAAgAJzTQXKb8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIAB5h0AAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAsACwDKAgAAQh8AAAAA";
+  const b64="UEsDBBQAAAAIAI8B0VxGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAI8B0VysXXIr7gAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3JlLnhtbFBLAQIUAxQAAAAIAI8B0VyZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeABAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQDFAAAAAgAjwHRXIMplz7VBwAAQioAABgAAAAAAAAAAAAAAICBIQgAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAIAI8B0VxUhxXoFwQAADwSAAAYAAAAAAAAAAAAAACAgSwQAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACACPAdFcxlwchdcDAADDDAAAGAAAAAAAAAAAAAAAgIF5FAAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAjwHRXJufKqQYBAAAEiIAAA0AAAAAAAAAAAAAAIABhhgAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACACPAdFcl4q7HMAAAAATAgAACwAAAAAAAAAAAAAAgAHJHAAAX3JlbHMvLnJlbHNQSwECFAMUAAAACACPAdFc9z4Eo4sBAABYAwAADwAAAAAAAAAAAAAAgAGyHQAAeGwvd29ya2Jvb2sueG1sUEsBAhQDFAAAAAgAjwHRXLts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIABah8AAHhsL19yZWxzL3dvcmtib29rLnhtbC5yZWxzUEsBAhQDFAAAAAgAjwHRXKb8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIABXCAAAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAsACwDKAgAAsCEAAAAA";
   const bin=atob(b64),bytes=new Uint8Array(bin.length);
   for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
   document.getElementById("formDownloadLink").href=URL.createObjectURL(new Blob([bytes],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
@@ -386,21 +385,18 @@ function readFile(file){
     const ws=wb.Sheets[wb.SheetNames[0]];
     const json=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
     if(json.length<2){alert("데이터가 없습니다.");return;}
-    // ── 헤더 자동 탐지: 유효 셀 3개 이상인 첫 번째 행 (최대 20행 스캔) ──
     let headerRow=0;
     for(let i=0;i<Math.min(json.length,20);i++){
       const filled=json[i].filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
       if(filled.length>=3){headerRow=i;break;}
     }
     headers=json[headerRow].map(String);
-    // ── 단위 탐지: 컬럼명에 (cm)/(m) 포함 여부 저장 ──
     _unitMap={};
     headers.forEach((h,i)=>{
       const hL=h.toLowerCase();
       if(hL.includes("(cm)")||hL.includes("cm)")||hL.includes(" cm")){_unitMap[i]="cm";}
       else if((hL.includes("(m)")||hL.includes(" m)"))&&!hL.includes("mm")&&!hL.includes("cm")){_unitMap[i]="m";}
     });
-    // ── 데이터 필터: 유효 셀 2개 이상인 행만 포함 (빈 행·합계 행 제거) ──
     rawData=json.slice(headerRow+1).filter(r=>{
       const filled=r.filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
       return filled.length>=2;
@@ -437,13 +433,12 @@ function renderMapTable(){
   FIELDS.forEach(f=>{
     if(f.dim&&!prevDim){html+=`<tr><td colspan="4" class="dim-label">DIMENSIONS (MM)</td></tr>`;prevDim=true;}
     const sel=fieldMap[f.key]||"";
-    const pv=headers.indexOf(sel)>=0?(rawData[0]||[])[headers.indexOf(sel)]:"";
-    // 단위 표시
     const colIdx=headers.indexOf(sel);
+    const pv=colIdx>=0?(rawData[0]||[])[colIdx]:"";
     const unitBadge=colIdx>=0&&_unitMap[colIdx]?` <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:3px">${_unitMap[colIdx].toUpperCase()}→MM</span>`:"";
     html+=`<tr>
       <td><span class="field-label">${f.label}${f.req?'<span class="req">*</span>':''}</span></td>
-      <td><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
+      <td style="white-space:nowrap"><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
         <option value="">-- 선택하세요 --</option>
         ${headers.map(h=>`<option value="${h}"${sel===h?" selected":""}>${h}</option>`).join("")}
       </select>${unitBadge}</td>
@@ -481,11 +476,9 @@ function classifyOOG(L,W,H,GW){
   return{type:"BREAKBULK",label:"Breakbulk",badgeClass:"badge-bulk",remark:`컨테이너 선적 불가 — Breakbulk 전용 선박 필요. 사유: ${r.join(" / ")}`};
 }
 
-// ── getVal: cm/m → mm 자동 변환 포함 ──
 function getVal(row,key){
   const col=fieldMap[key];if(!col)return"";
-  const idx=headers.indexOf(col);
-  if(idx<0)return"";
+  const idx=headers.indexOf(col);if(idx<0)return"";
   const val=row[idx];
   if(["length","width","height"].includes(key)&&val!==""&&val!==null&&val!==undefined){
     const unit=_unitMap[idx];
@@ -607,7 +600,6 @@ function resetAll(){
   setStep(1);window.scrollTo(0,0);
 }
 
-// ── 3D VIEWER ────────────────────────────────────────────
 let _three=null;
 
 function open3D(){
@@ -655,32 +647,22 @@ function render3DSlot(slotKey,cargos){
   else if(slotKey.includes("FR"))ctype="40FR";
   const cSpec=CONTAINERS[ctype]||{L:12030,W:2350,H:2695};
   const CL=cSpec.L/1000,CW=cSpec.W/1000,CH=cSpec.H/1000;
-
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-  renderer.setSize(w,h);renderer.setClearColor(0x0d1b2a,1);
-  renderer.shadowMap.enabled=true;
-
+  renderer.setSize(w,h);renderer.setClearColor(0x0d1b2a,1);renderer.shadowMap.enabled=true;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(50,w/h,.01,500);
   camera.position.set(CL*1.2,CH*2.2,CW*3.5);camera.lookAt(CL/2,CH/2,CW/2);
-
   scene.add(new THREE.AmbientLight(0xffffff,.55));
   const sun=new THREE.DirectionalLight(0xffffff,.9);sun.position.set(CL*2,CH*3,CW*2);sun.castShadow=true;scene.add(sun);
-
   const ce=new THREE.EdgesGeometry(new THREE.BoxGeometry(CL,CH,CW));
   const cl=new THREE.LineSegments(ce,new THREE.LineBasicMaterial({color:0x334155}));
   cl.position.set(CL/2,CH/2,CW/2);scene.add(cl);
-
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(CL,CW),new THREE.MeshStandardMaterial({color:0x1e293b,roughness:.9}));
   fl.rotation.x=-Math.PI/2;fl.position.set(CL/2,.001,CW/2);fl.receiveShadow=true;scene.add(fl);
-
   const wm=new THREE.MeshStandardMaterial({color:0x1e3a5f,transparent:true,opacity:.1});
   [[CL,CH,.02,CL/2,CH/2,CW],[CL,CH,.02,CL/2,CH/2,0],[.02,CH,CW,0,CH/2,CW/2],[.02,CH,CW,CL,CH/2,CW/2]].forEach(([lx,ly,lz,px,py,pz])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(lx,ly,lz),wm);m.position.set(px,py,pz);scene.add(m);});
-
   const palette=[0xE30613,0x0059a8,0x10B981,0xF59E0B,0x8B5CF6,0xEC4899,0x06B6D4,0x84CC16,0xF97316,0x6366F1];
-  const placed=[];
-  let cx=0,cz=0,rowMaxZ=0;
-  const PAD=.02;
+  const placed=[];let cx=0,cz=0,rowMaxZ=0;const PAD=.02;
   [...cargos].sort((a,b)=>b.cbm-a.cbm).forEach((c,ci)=>{
     const bL=(c.L||500)/1000,bW=(c.W||500)/1000,bH=(c.H||500)/1000;
     if(cx+bL>CL+.1){cx=0;cz+=rowMaxZ+PAD;rowMaxZ=0;}
@@ -690,15 +672,12 @@ function render3DSlot(slotKey,cargos){
     box.position.set(cx+bL/2,bH/2,cz+bW/2);box.castShadow=true;scene.add(box);
     const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.2}));
     edges.position.copy(box.position);scene.add(edges);
-    placed.push({item:c.item,color});
-    cx+=bL+PAD;if(bW>rowMaxZ)rowMaxZ=bW;
+    placed.push({item:c.item,color});cx+=bL+PAD;if(bW>rowMaxZ)rowMaxZ=bW;
   });
-
   document.getElementById("m3d-legend").innerHTML=placed.slice(0,8).map(b=>`<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#${b.color.toString(16).padStart(6,"0")};flex-shrink:0"></span>${b.item}</div>`).join("")+(placed.length>8?`<div style="color:#64748B">+ ${placed.length-8}개 더</div>`:"");
   const tc=cargos.reduce((s,c)=>s+c.cbm,0),tg=cargos.reduce((s,c)=>s+c.gw,0);
   document.getElementById("m3d-stats").innerHTML=`<div>${slotKey}</div><div>화물 ${cargos.length}건</div><div>CBM ${tc.toFixed(2)} m³</div><div>G.W ${tg.toLocaleString()} kg</div>`;
   document.getElementById("m3d-title").textContent=`${CL}m × ${CW}m × ${CH}m`;
-
   let isDrag=false,isRight=false,px=0,py=0,theta=.4,phi=.9,radius=Math.sqrt(CL*CL+CW*CW)*2.2;
   const target=new THREE.Vector3(CL/2,CH/2,CW/2);
   function uc(){camera.position.set(target.x+radius*Math.sin(phi)*Math.sin(theta),target.y+radius*Math.cos(phi),target.z+radius*Math.sin(phi)*Math.cos(theta));camera.lookAt(target);}
