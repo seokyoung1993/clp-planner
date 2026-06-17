@@ -25,6 +25,8 @@
   --r4:4px;--r8:8px;
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── NAV ── */
 nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 32px;gap:0;position:sticky;top:0;z-index:100}
 .nav-brand{display:flex;align-items:center;gap:10px;margin-right:40px;text-decoration:none}
 .nav-logo{width:32px;height:32px;background:var(--red);border-radius:var(--r4);display:grid;place-items:center}
@@ -34,9 +36,12 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;
 .nav-tabs{display:flex;gap:0;flex:1}
 .nav-tab{padding:0 20px;height:60px;display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--text-2);border-bottom:2px solid transparent;cursor:default;transition:color .15s,border-color .15s;white-space:nowrap}
 .nav-tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
+.nav-tab.done{color:var(--text-2)}
 .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
-.btn-epc{padding:6px 14px;border:1.5px solid var(--navy);border-radius:var(--r4);font-size:12px;font-weight:600;color:var(--navy);background:transparent;cursor:pointer}
+.btn-epc{padding:6px 14px;border:1.5px solid var(--navy);border-radius:var(--r4);font-size:12px;font-weight:600;color:var(--navy);background:transparent;cursor:pointer;letter-spacing:.01em}
 .btn-epc:hover{background:var(--navy);color:#fff}
+
+/* ── STEPPER ── */
 .stepper-wrap{padding:32px 0 24px;display:flex;justify-content:center}
 .stepper{display:flex;align-items:center;gap:0;max-width:520px;width:100%}
 .step-item{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative}
@@ -48,7 +53,11 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);height:60px;
 .step-label{font-size:12px;font-weight:500;color:var(--text-3)}
 .step-item.active .step-label{color:var(--red);font-weight:600}
 .step-item.done .step-label{color:var(--text-2)}
+
+/* ── LAYOUT ── */
 main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
+
+/* ── UPLOAD ── */
 .upload-card{border:1.5px dashed var(--border-2);border-radius:var(--r8);background:var(--surface);padding:56px 24px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;position:relative}
 .upload-card:hover,.upload-card.drag{border-color:var(--red);background:var(--red-bg)}
 .upload-card input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
@@ -68,7 +77,10 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .dl-box{display:flex;align-items:center;gap:10px;padding:10px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);cursor:pointer;transition:border-color .15s}
 .dl-box:hover{border-color:var(--blue)}
 .dl-box svg{width:16px;height:16px;color:var(--blue-mid)}
+.dl-box span{font-size:12px;color:var(--text-2)}
 .dl-box strong{color:var(--text);font-size:12px}
+
+/* ── MAPPING ── */
 .mapping-layout{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
 .mapping-sidebar{display:flex;flex-direction:column;gap:12px}
 .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);padding:20px}
@@ -86,8 +98,10 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .help-card h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:8px}
 .help-card p{font-size:12px;color:#94A3B8;line-height:1.6;margin-bottom:12px}
 .help-card a{font-size:12px;color:#93C5FD;font-weight:500;text-decoration:none}
+.help-card a:hover{text-decoration:underline}
 .help-icon{position:absolute;right:12px;bottom:12px;width:48px;height:48px;background:rgba(255,255,255,.08);border-radius:50%;display:grid;place-items:center}
 .help-icon svg{width:24px;height:24px;color:rgba(255,255,255,.3)}
+
 .mapping-main{background:var(--surface);border:1px solid var(--border);border-radius:var(--r8)}
 .mapping-main-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .mapping-main-header h3{font-size:13px;font-weight:700;color:var(--text)}
@@ -112,8 +126,11 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .tip-links{display:flex;gap:12px}
 .tip-link{font-size:12px;color:var(--blue-mid);cursor:pointer;font-weight:500}
 .tip-link:hover{text-decoration:underline}
+
+/* ── RESULTS ── */
 .section-title{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
 .section-title svg{width:18px;height:18px;color:var(--red)}
+
 .plan-grid{display:grid;grid-template-columns:repeat(3,1fr) 220px;gap:12px;margin-bottom:24px}
 .plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);padding:16px 20px;cursor:pointer;transition:border-color .15s}
 .plan-card:hover{border-color:var(--blue-mid)}
@@ -126,89 +143,131 @@ main{flex:1;max-width:1040px;margin:0 auto;padding:0 32px 48px;width:100%}
 .plan-3d:hover{background:var(--navy-2)}
 .plan-3d svg{width:32px;height:32px;color:rgba(255,255,255,.7)}
 .plan-3d span{font-size:12px;font-weight:600;color:#fff}
+
 .result-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r8);margin-bottom:16px;overflow:hidden}
 .result-card-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .result-card-header h3{font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
 .header-meta{font-size:12px;color:var(--text-3)}
+
+/* TABLES */
 .data-table{width:100%;border-collapse:collapse;font-size:13px}
-.data-table thead th{padding:9px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--text-3);background:#F1F5F9;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);white-space:nowrap}
+.data-table thead th{padding:9px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--text-3);background:#F1F5F9;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border);white-space:nowrap;position:sticky;top:0}
 .data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
 .data-table tr:last-child td{border-bottom:none}
 .data-table tr.oog-row td{background:#FFFBEB}
 .data-table tr:nth-child(even):not(.oog-row) td{background:#FAFBFC}
-.num-col{font-weight:500;font-size:12px;color:var(--text-3)}
+.num-col{font-family:'Inter',sans-serif;font-weight:500;font-size:12px;color:var(--text-3)}
 .item-name{font-weight:600;color:var(--text)}
 .qty-val{font-weight:700;font-size:14px}
 .dim-val{font-size:12px;color:var(--text-2);font-variant-numeric:tabular-nums}
 .cbm-val{font-weight:600;color:var(--blue);font-variant-numeric:tabular-nums}
 .gw-val{font-variant-numeric:tabular-nums}
+
+/* BADGES */
 .badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
 .badge-general{background:var(--success-bg);color:var(--success)}
+.badge-oog{background:var(--warn-bg);color:#92400E}
 .badge-ot{background:#E0F2FE;color:#0C4A6E}
 .badge-fr{background:var(--purple-bg);color:var(--purple)}
 .badge-double-fr{background:#FDF4FF;color:#701A75;border:1px solid #E879F9}
 .badge-bulk{background:var(--danger-bg);color:var(--danger)}
+
+/* CNTR CHIPS */
 .cntr-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:3px;font-size:11px;font-weight:700;background:var(--navy);color:#fff}
 .remark-cell{font-size:11px;color:var(--text-2);max-width:280px;white-space:normal;line-height:1.5}
 .remark-red{color:var(--red);font-weight:500}
+
+/* OOG extras */
 .oog-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin:1px}
-.tag-h,.tag-w,.tag-l{background:#FEF3C7;color:#92400E}
+.tag-h{background:#FEF3C7;color:#92400E}
+.tag-w{background:#FEF3C7;color:#92400E}
+.tag-l{background:#FEF3C7;color:#92400E}
 .tag-multi{background:#FEE2E2;color:#991B1B}
+
+/* BOTTOM BAR */
 .bottom-bar{display:flex;justify-content:space-between;align-items:center;padding:20px 0 0;gap:12px;flex-wrap:wrap}
-.bottom-left,.bottom-right{display:flex;gap:10px}
+.bottom-left{display:flex;gap:10px}
+.bottom-right{display:flex;gap:10px}
 .btn-ghost{padding:10px 20px;background:transparent;border:1.5px solid var(--border-2);border-radius:var(--r4);font-size:13px;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
 .btn-ghost:hover{background:var(--bg)}
 .btn-red{padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:var(--r4);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:opacity .15s}
 .btn-red:hover{opacity:.88}
+
+/* FOOTER */
 footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;background:var(--surface)}
 .footer-brand{font-size:12px;font-weight:700;color:var(--navy)}
 .footer-copy{font-size:11px;color:var(--text-3);margin-top:2px}
 .footer-links{display:flex;gap:16px}
 .footer-links a{font-size:12px;color:var(--text-3);text-decoration:none}
 .footer-links a:hover{color:var(--text)}
+
+/* UTIL */
 .hidden{display:none!important}
 .table-scroll{overflow-x:auto}
+svg.ico{display:inline-block;vertical-align:middle}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a class="nav-brand" href="#">
     <div class="nav-logo"><span>L글</span></div>
-    <div class="nav-title"><h1>CLP Planner</h1><p>Container Loading Plan 자동화</p></div>
+    <div class="nav-title">
+      <h1>CLP Planner</h1>
+      <p>Container Loading Plan 자동화</p>
+    </div>
   </a>
   <div class="nav-tabs">
     <div class="nav-tab" id="ntab1">파일 업로드</div>
     <div class="nav-tab" id="ntab2">컬럼 매핑</div>
     <div class="nav-tab" id="ntab3">결과 확인</div>
   </div>
-  <div class="nav-right"><button class="btn-epc">EPC파트 프로토타입</button></div>
+  <div class="nav-right">
+    <button class="btn-epc">EPC파트 프로토타입</button>
+  </div>
 </nav>
 
+<!-- STEPPER -->
 <div class="stepper-wrap" id="stepperWrap">
   <div class="stepper">
-    <div class="step-item active" id="si1"><div class="step-circle">1</div><div class="step-label">파일 업로드</div></div>
-    <div class="step-item" id="si2"><div class="step-circle">2</div><div class="step-label">컬럼 매핑</div></div>
-    <div class="step-item" id="si3"><div class="step-circle">3</div><div class="step-label">결과 확인</div></div>
+    <div class="step-item active" id="si1">
+      <div class="step-circle">1</div>
+      <div class="step-label">파일 업로드</div>
+    </div>
+    <div class="step-item" id="si2">
+      <div class="step-circle">2</div>
+      <div class="step-label">컬럼 매핑</div>
+    </div>
+    <div class="step-item" id="si3">
+      <div class="step-circle">3</div>
+      <div class="step-label">결과 확인</div>
+    </div>
   </div>
 </div>
 
 <main>
-  <!-- STEP 1 -->
+
+  <!-- ── STEP 1: UPLOAD ── -->
   <div id="s1">
     <div class="upload-card" id="dropZone">
       <input type="file" accept=".xlsx,.xls,.csv" id="fileInput">
       <div class="upload-icon-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7c0-1.1.9-2 2-2h3l2 2h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
-        <div class="upload-plus"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="2" x2="5" y2="8"/><line x1="2" y1="5" x2="8" y2="5"/></svg></div>
+        <div class="upload-plus">
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="5" y1="2" x2="5" y2="8"/><line x1="2" y1="5" x2="8" y2="5"/></svg>
+        </div>
       </div>
       <div class="upload-title"><span>엑셀 파일을 여기에 드롭</span> 하거나 클릭해서 업로드</div>
       <div class="upload-sub">.xlsx · .xls · .csv 지원 | Packing List 파일</div>
-      <div class="upload-badges"><div class="upload-badge">MAX 20MB</div><div class="upload-badge">MULTI-UPLOAD ENABLED</div></div>
+      <div class="upload-badges">
+        <div class="upload-badge">MAX 20MB</div>
+        <div class="upload-badge">MULTI-UPLOAD ENABLED</div>
+      </div>
     </div>
     <div class="upload-actions">
       <div class="link-btn">샘플 데이터로 먼저 테스트해보려면 → <span class="hl" onclick="loadSample()">샘플 PL 불러오기 →</span></div>
-      <div class="dl-box">
+      <div class="dl-box" id="formDownloadBox">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2"/></svg>
         <div>
           <div style="font-size:11px;color:var(--text-3)">Packing List 양식이 없으시다면</div>
@@ -218,15 +277,18 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
     </div>
   </div>
 
-  <!-- STEP 2 -->
+  <!-- ── STEP 2: MAPPING ── -->
   <div id="s2" class="hidden">
     <div class="mapping-layout">
       <div class="mapping-sidebar">
         <div class="sidebar-card">
           <h3>컬럼 매핑 설정</h3>
           <p>감지된 컬럼을 CLP 계산에 필요한 필드에 연결해주세요. 자동 매핑 결과를 확인하고 수정하세요.</p>
-          <div class="file-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z"/></svg><span id="fileNameLabel">파일 업로드 완료</span></div>
-          <div class="status-badge" id="mappingStatus">필드 자동 매핑됨</div>
+          <div class="file-badge" id="fileBadge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z"/></svg>
+            <span id="fileNameLabel">파일 업로드 완료</span>
+          </div>
+          <div class="status-badge" id="mappingStatus">6개 필드 중 0개 자동 매핑됨</div>
         </div>
         <button class="btn-primary" onclick="runCalc()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -238,54 +300,79 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
         </button>
         <div class="help-card">
           <h4>도움말</h4>
-          <p>규격 단위는 mm, 중량 단위는 kg. (cm) 컬럼은 자동 x10 변환. 헤더 최대 20행 자동 탐지.</p>
+          <p>규격 단위는 mm, 중량 단위는 kg으로 변환되어 계산됩니다.</p>
           <a href="#">가이드 문서 보기 →</a>
-          <div class="help-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
+          <div class="help-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+          </div>
         </div>
       </div>
+
       <div class="mapping-main">
-        <div class="mapping-main-header"><h3>데이터 매핑 테이블</h3><span class="sync-dot">데이터 동기화됨</span></div>
+        <div class="mapping-main-header">
+          <h3>데이터 매핑 테이블</h3>
+          <span class="sync-dot">데이터 동기화됨</span>
+        </div>
         <table class="mapping-table">
-          <thead><tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기 (샘플)</th><th>상태</th></tr></thead>
+          <thead>
+            <tr><th>필수 필드</th><th>매핑된 엑셀 컬럼</th><th>미리보기 (샘플)</th><th>상태</th></tr>
+          </thead>
           <tbody id="mapTableBody"></tbody>
         </table>
         <div class="mapping-tip">
-          <span><b>Tip:</b> 컬럼명이 유사한 경우 시스템이 자동 연결합니다. (Dimension Cm, G.V. 등 지원)</span>
-          <div class="tip-links"><span class="tip-link" onclick="resetMapping()">초기화</span><span class="tip-link" onclick="loadSampleInMapping()">샘플 데이터 적용</span></div>
+          <span><b>Tip:</b> 컬럼명이 유사한 경우 시스템이 자동으로 자동 연결합니다.</span>
+          <div class="tip-links">
+            <span class="tip-link" onclick="resetMapping()">초기화</span>
+            <span class="tip-link" onclick="loadSampleInMapping()">샘플 데이터 적용</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- STEP 3 -->
+  <!-- ── STEP 3: RESULTS ── -->
   <div id="s3" class="hidden">
+
+    <!-- Plan cards -->
     <div class="section-title">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
       추천 컨테이너 플랜
     </div>
     <div class="plan-grid" id="planGrid"></div>
 
+    <!-- OOG card -->
     <div class="result-card" id="oogCard" style="display:none">
       <div class="result-card-header">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--warn)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>OOG 화물 — 선적 방식 판정</h3>
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--warn)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          OOG 화물 — 선적 방식 판정
+        </h3>
         <span class="header-meta" id="oogMeta"></span>
       </div>
       <div class="table-scroll">
         <table class="data-table">
-          <thead><tr><th>Item</th><th>L (mm)</th><th>W (mm)</th><th>H (mm)</th><th>G.W (kg)</th><th>초과 항목</th><th>선적 방식</th><th>Remark</th></tr></thead>
+          <thead>
+            <tr><th>Item</th><th>L (mm)</th><th>W (mm)</th><th>H (mm)</th><th>G.W (kg)</th><th>초과 항목</th><th>선적 방식</th><th>Remark</th></tr>
+          </thead>
           <tbody id="oogBody"></tbody>
         </table>
       </div>
     </div>
 
+    <!-- Detail card -->
     <div class="result-card">
       <div class="result-card-header">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--blue)"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>화물 상세 — 컨테이너 배정 결과</h3>
-        <span class="header-meta" id="detailMeta" style="color:var(--danger);font-weight:600">⚠ 검수 필요 (Double Check)</span>
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--blue)"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          화물 상세 — 컨테이너 배정 결과
+        </h3>
+        <span class="header-meta" id="detailMeta" style="color:var(--danger);font-weight:600;cursor:pointer">⚠ 검수 필요 (Double Check)</span>
       </div>
       <div class="table-scroll">
         <table class="data-table">
-          <thead><tr><th>#</th><th>Item</th><th>Qty</th><th>L/W/H</th><th>CBM</th><th>G.W (kg)</th><th>배정 / 선적방식</th><th>Remark</th></tr></thead>
+          <thead>
+            <tr><th>#</th><th>Item</th><th>Qty</th><th>L/W/H</th><th>CBM</th><th>G.W (kg)</th><th>배정 / 선적방식</th><th>Remark</th></tr>
+          </thead>
           <tbody id="detailBody"></tbody>
         </table>
       </div>
@@ -310,12 +397,14 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
       </div>
     </div>
   </div>
+
 </main>
 
-<!-- 3D MODAL -->
+<!-- 3D VIEWER MODAL -->
 <div id="modal3d" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,10,20,.82);backdrop-filter:blur(4px);">
   <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;">
     <div style="background:#0d1b2a;border-radius:12px;width:100%;max-width:960px;max-height:90vh;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.1);overflow:hidden;">
+      <!-- modal header -->
       <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.1);">
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="color:#fff;font-size:14px;font-weight:700;">3D 컨테이너 적재 시뮬레이션</span>
@@ -326,10 +415,14 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
           <button onclick="close3D()" style="width:28px;height:28px;background:rgba(255,255,255,.08);border:none;border-radius:6px;cursor:pointer;color:#94A3B8;font-size:16px;display:grid;place-items:center;">✕</button>
         </div>
       </div>
+      <!-- canvas -->
       <div style="flex:1;position:relative;min-height:420px;">
         <canvas id="canvas3d" style="width:100%;height:100%;display:block;"></canvas>
+        <!-- legend -->
         <div id="m3d-legend" style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:2;"></div>
+        <!-- controls hint -->
         <div style="position:absolute;bottom:10px;right:12px;font-size:10px;color:#475569;">드래그: 회전 · 휠: 줌 · 우클릭: 이동</div>
+        <!-- stats -->
         <div id="m3d-stats" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);border-radius:8px;padding:10px 14px;font-size:11px;color:#CBD5E1;line-height:1.8;text-align:right;"></div>
       </div>
     </div>
@@ -337,41 +430,70 @@ footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;justify
 </div>
 
 <footer>
-  <div><div class="footer-brand">Lotte Global Logistics</div><div class="footer-copy">© 2024 Lotte Global Logistics. All rights reserved.</div></div>
-  <div class="footer-links"><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Contact Support</a></div>
+  <div>
+    <div class="footer-brand">Lotte Global Logistics</div>
+    <div class="footer-copy">© 2024 Lotte Global Logistics. All rights reserved.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Terms of Service</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Contact Support</a>
+  </div>
 </footer>
 
 <script>
-const CONTAINERS={"20GP":{L:5895,W:2350,H:2392,maxCBM:33.2,maxGW:21700},"40GP":{L:12030,W:2350,H:2392,maxCBM:67.7,maxGW:26680},"40HC":{L:12030,W:2350,H:2695,maxCBM:76.4,maxGW:26480},"20FR":{L:5620,W:2240,H:2233,maxGW:30480},"40FR":{L:12080,W:2228,H:2000,maxGW:40000}};
-const FIELDS=[{key:"item",label:"Item",req:true},{key:"qty",label:"Qty",req:true},{key:"length",label:"Length (L)",req:true,dim:true},{key:"width",label:"Width (W)",req:true,dim:true},{key:"height",label:"Height (H)",req:true,dim:true},{key:"gw",label:"Weight",req:true},{key:"cbm",label:"CBM",req:false}];
-const KW={
-  item:   ["item","품목","description","desc","cargo","name","품명","화물명","main item","product"],
-  qty:    ["qty","quantity","수량","pcs","pieces","ea","count"],
-  length: ["length","길이","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long","(cm) length","cm.*length","dimension.*length"],
-  width:  ["width","너비","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide","(cm) wide","(cm) width","cm.*wide"],
-  height: ["height","높이","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high","(cm) height","cm.*height"],
-  cbm:    ["cbm","volume","부피","m3","cbm(m3)","g.v","g.v.","gv(cbm)","체적","용적"],
-  gw:     ["g.w","gw","gross","weight","중량","g.w(kg)","gw(kg)","gross weight","g.w.","총중량","gross wt","(kgs)"],
+// ── DATA ──────────────────────────────────────────────────
+const CONTAINERS = {
+  "20GP":{L:5895,W:2350,H:2392,maxCBM:33.2,maxGW:21700},
+  "40GP":{L:12030,W:2350,H:2392,maxCBM:67.7,maxGW:26680},
+  "40HC":{L:12030,W:2350,H:2695,maxCBM:76.4,maxGW:26480},
+  "20FR":{L:5620,W:2240,H:2233,maxGW:30480},
+  "40FR":{L:12080,W:2228,H:2000,maxGW:40000},
 };
+const FIELDS=[
+  {key:"item", label:"Item", req:true},
+  {key:"qty",  label:"Qty",  req:true},
+  {key:"length",label:"Length (L)", req:true, dim:true},
+  {key:"width", label:"Width (W)",  req:true, dim:true},
+  {key:"height",label:"Height (H)", req:true, dim:true},
+  {key:"gw",   label:"Weight",     req:true},
+  {key:"cbm",  label:"CBM",        req:false},
+];
+const KW={
+  item:   ["item","품목","description","desc","cargo","name","품명","화물명"],
+  qty:    ["qty","quantity","수량","pcs","pieces","ea"],
+  length: ["length","길이","l(mm)","l(cm)","l(m)","length(mm)","l/mm","long"],
+  width:  ["width","너비","w(mm)","w(cm)","w(m)","width(mm)","w/mm","wide"],
+  height: ["height","높이","h(mm)","h(cm)","h(m)","height(mm)","h/mm","high"],
+  cbm:    ["cbm","volume","부피","m3","m³","cbm(m3)"],
+  gw:     ["g.w","gw","gross","weight","중량","g.w(kg)","gw(kg)","gross weight","kg"],
+};
+
 let rawData=[],headers=[],fieldMap={},_fn="",_unitMap={};
 
-// ── Packing List Form 다운로드 (zipfile로 직접 생성한 정상 파일) ──
+// ── XLSX DOWNLOAD ──
 (function(){
-  const b64="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";
+  const b64="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";
   const bin=atob(b64),bytes=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
-  document.getElementById("formDownloadLink").href=URL.createObjectURL(new Blob([bytes],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
+  for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  const url=URL.createObjectURL(new Blob([bytes],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
+  document.getElementById("formDownloadLink").href=url;
 })();
 
+// ── STEP CONTROL ──
 function setStep(n){
   [1,2,3].forEach(i=>{
-    document.getElementById("si"+i).className="step-item"+(i<n?" done":i===n?" active":"");
-    document.getElementById("ntab"+i).className="nav-tab"+(i===n?" active":i<n?" done":"");
+    const si=document.getElementById("si"+i);
+    const nt=document.getElementById("ntab"+i);
+    si.className="step-item"+(i<n?" done":i===n?" active":"");
+    nt.className="nav-tab"+(i===n?" active":i<n?" done":"");
     document.getElementById("s"+i).classList.toggle("hidden",i!==n);
   });
-  document.getElementById("stepperWrap").style.display=n===3?"none":"";
+  // stepper visibility
+  document.getElementById("stepperWrap").style.display=(n===3)?"none":"";
 }
 
+// ── UPLOAD ──
 document.getElementById("fileInput").addEventListener("change",e=>{if(e.target.files[0])readFile(e.target.files[0]);});
 const dz=document.getElementById("dropZone");
 dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("drag");});
@@ -386,18 +508,22 @@ function readFile(file){
     const ws=wb.Sheets[wb.SheetNames[0]];
     const json=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
     if(json.length<2){alert("데이터가 없습니다.");return;}
+    // ── 헤더 자동 탐지: 유효 셀 3개 이상인 첫 번째 행 (최대 20행 스캔) ──
     let headerRow=0;
     for(let i=0;i<Math.min(json.length,20);i++){
       const filled=json[i].filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
       if(filled.length>=3){headerRow=i;break;}
     }
     headers=json[headerRow].map(String);
+    // ── 단위 탐지: 컬럼명에 (cm) 또는 (m) 포함 여부 저장 ──
     _unitMap={};
     headers.forEach((h,i)=>{
       const hL=h.toLowerCase();
       if(hL.includes("(cm)")||hL.includes("cm)")||hL.includes(" cm")){_unitMap[i]="cm";}
       else if((hL.includes("(m)")||hL.includes(" m)"))&&!hL.includes("mm")&&!hL.includes("cm")){_unitMap[i]="m";}
     });
+    // ── 데이터 필터: 유효 셀 3개 이상 + 첫 번째 텍스트 컬럼(item) 값 있는 행만 포함 ──
+    // 합계행·빈행·금액만 있는 행 제거
     const itemColIdx=headers.findIndex(h=>{
       const hL=h.toLowerCase().trim();
       return ["item","품목","description","desc","cargo","name","품명","화물명","main item"].some(kw=>hL.includes(kw));
@@ -405,10 +531,12 @@ function readFile(file){
     rawData=json.slice(headerRow+1).filter(r=>{
       const filled=r.filter(c=>c!==null&&c!==undefined&&String(c).trim()!=="");
       if(filled.length<1)return false;
+      // item 컬럼을 찾았으면, 그 셀이 비어있는 행은 제외 (합계행 제거)
       if(itemColIdx>=0){
-        const v=r[itemColIdx];
-        if(v===null||v===undefined||String(v).trim()==="")return false;
+        const itemVal=r[itemColIdx];
+        if(itemVal===null||itemVal===undefined||String(itemVal).trim()==="")return false;
       }
+      // 모든 셀이 숫자인 행 제거 (합계/소계 행)
       const textCells=filled.filter(c=>isNaN(parseFloat(String(c).replace(/,/g,"")))||String(c).trim()==="");
       if(textCells.length===0)return false;
       return true;
@@ -439,59 +567,96 @@ function showMapping(){
 }
 
 function renderMapTable(){
+  const tbody=document.getElementById("mapTableBody");
   const matched=Object.values(fieldMap).filter(v=>v).length;
   document.getElementById("mappingStatus").textContent=`${FIELDS.length}개 필드 중 ${matched}개 자동 매핑됨`;
-  let html="",prevDim=false;
+
+  let html="";
+  let prevDim=false;
   FIELDS.forEach(f=>{
-    if(f.dim&&!prevDim){html+=`<tr><td colspan="4" class="dim-label">DIMENSIONS (MM)</td></tr>`;prevDim=true;}
+    if(f.dim&&!prevDim){
+      html+=`<tr><td colspan="4" class="dim-label">DIMENSIONS (MM)</td></tr>`;
+      prevDim=true;
+    }
     const sel=fieldMap[f.key]||"";
-    const colIdx=headers.indexOf(sel);
-    const pv=colIdx>=0?(rawData[0]||[])[colIdx]:"";
-    const unitBadge=colIdx>=0&&_unitMap[colIdx]?` <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:1px 5px;border-radius:3px">${_unitMap[colIdx].toUpperCase()}→MM</span>`:"";
+    const previewRow=rawData[0]||[];
+    const previewIdx=headers.indexOf(sel);
+    const previewVal=previewIdx>=0?previewRow[previewIdx]:"";
+    const isMatched=!!sel;
+    const statusHtml=isMatched
+      ?`<span class="status-chip chip-matched">MATCHED</span>`
+      :f.req?`<span class="status-chip chip-required">REQUIRED</span>`:`<span class="status-chip" style="background:#F1F5F9;color:#94A3B8">OPTIONAL</span>`;
     html+=`<tr>
-      <td><span class="field-label">${f.label}${f.req?'<span class="req">*</span>':''}</span></td>
-      <td><select class="map-select${!sel&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
+      <td><span class="field-label">${f.label} ${f.req?'<span class="req">*</span>':''}</span></td>
+      <td><select class="map-select${!isMatched&&f.req?" missing":""}" onchange="fieldMap['${f.key}']=this.value;renderMapTable()">
         <option value="">-- 선택하세요 --</option>
-        ${headers.map(h=>`<option value="${h}"${sel===h?" selected":""}>${h}</option>`).join("")}
-      </select>${unitBadge}</td>
-      <td class="preview-val">${pv||"-"}</td>
-      <td>${sel?'<span class="status-chip chip-matched">MATCHED</span>':f.req?'<span class="status-chip chip-required">REQUIRED</span>':'<span class="status-chip" style="background:#F1F5F9;color:#94A3B8">OPTIONAL</span>'}</td>
+        ${headers.map(h=>`<option value="${h}" ${sel===h?"selected":""}>${h}</option>`).join("")}
+      </select></td>
+      <td class="preview-val">${previewVal||"-"}</td>
+      <td>${statusHtml}</td>
     </tr>`;
   });
-  document.getElementById("mapTableBody").innerHTML=html;
+  tbody.innerHTML=html;
 }
 
 function resetMapping(){fieldMap=autoMap(headers);renderMapTable();}
 function loadSampleInMapping(){loadSample();}
 
+// ── SAMPLE ──
 function loadSample(){
   headers=["Item Description","Qty","Length(mm)","Width(mm)","Height(mm)","CBM","G.W(kg)"];
-  rawData=[["Steel Frame A",2,4200,1800,2100,15.876,3200],["Generator Unit",1,3500,1500,2200,11.55,4800],["Pump Assembly",3,800,600,900,1.296,420],["Control Panel",4,1200,500,800,1.92,280],["Pipe Bundle",2,6000,800,800,7.68,1100],["Excavator Arm",1,8500,2600,1800,39.78,12000],["Concrete Mixer",1,4800,2500,3200,38.4,9500],["Cable Drum",5,1200,1200,1200,8.64,600],["Transformer Box",2,2200,1800,2000,15.84,5200],["Spare Parts Kit",10,600,400,300,0.72,85]];
-  _fn="Sample_PL.xlsx";_unitMap={};fieldMap=autoMap(headers);showMapping();
+  rawData=[
+    ["Steel Frame A",2,4200,1800,2100,15.876,3200],
+    ["Generator Unit",1,3500,1500,2200,11.55,4800],
+    ["Pump Assembly",3,800,600,900,1.296,420],
+    ["Control Panel",4,1200,500,800,1.92,280],
+    ["Pipe Bundle",2,6000,800,800,7.68,1100],
+    ["Excavator Arm",1,8500,2600,1800,39.78,12000],
+    ["Concrete Mixer",1,4800,2500,3200,38.4,9500],
+    ["Cable Drum",5,1200,1200,1200,8.64,600],
+    ["Transformer Box",2,2200,1800,2000,15.84,5200],
+    ["Spare Parts Kit",10,600,400,300,0.72,85],
+  ];
+  _fn="Sample_PL.xlsx";
+  fieldMap=autoMap(headers);
+  showMapping();
 }
 
+// ── OOG LOGIC ──
 function isOOG(L,W,H){
-  const i=[];
-  if(H>2695)i.push({t:"Height",cls:"tag-h"});
-  if(W>2350)i.push({t:"Width",cls:"tag-w"});
-  if(L>12030)i.push({t:"Length",cls:"tag-l"});
-  return i;
+  const issues=[];
+  if(H>2695)issues.push({t:"Height",v:`+${H-2695}mm`,cls:"tag-h"});
+  if(W>2350)issues.push({t:"Width", v:`+${W-2350}mm`,cls:"tag-w"});
+  if(L>12030)issues.push({t:"Length",v:`+${L-12030}mm`,cls:"tag-l"});
+  return issues;
 }
-
 function classifyOOG(L,W,H,GW){
-  const f20=CONTAINERS["20FR"],f40=CONTAINERS["40FR"];
-  const oH=H>2695,oW=W>2350,oL=L>12030,owmm=oW?W-2350:0;
-  if(oH&&!oW&&!oL&&H<=4000)return{type:"OT",label:"20'OT",badgeClass:"badge-ot",remark:"높이만 초과. OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버."};
-  if(L<=f20.L&&W<=(f20.W+1000)&&H<=(f20.H+1000)&&GW<=f20.maxGW){const s=oW?Math.ceil((W-f20.W)/2):0;return{type:"20FR",label:"20'FR",badgeClass:"badge-fr",remark:`20'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고 필요.`:""}`};}
-  if(L<=f40.L&&W<=(f40.W+1000)&&H<=(f40.H+1000)&&GW<=f40.maxGW){const s=oW?Math.ceil((W-f40.W)/2):0;return{type:"40FR",label:"40'FR",badgeClass:"badge-fr",remark:`40'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고.`:""}`};}
-  if(L<=24000&&GW<=f40.maxGW)return{type:"40FR×2",label:"40'FR×2 (선사 협의 필요)",badgeClass:"badge-double-fr",remark:"40'FR 2개 연결(Double FR) 방식. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요."};
-  const r=[];if(L>24000)r.push(`길이 ${L}mm`);if(GW>f40.maxGW)r.push(`중량 ${GW.toLocaleString()}kg`);if(owmm>1200)r.push(`너비 편측 ${Math.ceil(owmm/2)}mm`);
-  return{type:"BREAKBULK",label:"Breakbulk",badgeClass:"badge-bulk",remark:`컨테이너 선적 불가 — Breakbulk 전용 선박 필요. 사유: ${r.join(" / ")}`};
+  const fr20=CONTAINERS["20FR"],fr40=CONTAINERS["40FR"];
+  const oH=H>2695,oW=W>2350,oL=L>12030;
+  const owmm=oW?W-2350:0;
+  if(oH&&!oW&&!oL&&H<=4000) return{type:"OT",label:"20'OT",badgeClass:"badge-ot",remark:"높이만 초과. OT(Open Top) 적용 가능. 높이 초과분은 Tarpaulin으로 커버."};
+  if(L<=fr20.L&&W<=(fr20.W+1000)&&H<=(fr20.H+1000)&&GW<=fr20.maxGW){
+    const s=oW?Math.ceil((W-fr20.W)/2):0;
+    return{type:"20FR",label:"20'FR",badgeClass:"badge-fr",remark:`20'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고 필요.`:""}`};
+  }
+  if(L<=fr40.L&&W<=(fr40.W+1000)&&H<=(fr40.H+1000)&&GW<=fr40.maxGW){
+    const s=oW?Math.ceil((W-fr40.W)/2):0;
+    return{type:"40FR",label:"40'FR",badgeClass:"badge-fr",remark:`40'FR 단독 적재 가능.${oW?` Over-width 편측 약 ${s}mm — 선사 OOG 신고.`:""}`};
+  }
+  if(L<=24000&&GW<=fr40.maxGW)
+    return{type:"40FR×2",label:"40'FR×2 (선사 협의 필요)",badgeClass:"badge-double-fr",remark:"40'FR 2개 연결(Double FR) 방식. 선사별 허용 여부 상이 — 반드시 선사 사전 협의 필요."};
+  const reasons=[];
+  if(L>24000)reasons.push(`길이 ${L}mm`);
+  if(GW>fr40.maxGW)reasons.push(`중량 ${GW.toLocaleString()}kg`);
+  if(owmm>1200)reasons.push(`너비 편측 ${Math.ceil(owmm/2)}mm`);
+  return{type:"BREAKBULK",label:"Breakbulk",badgeClass:"badge-bulk",remark:`컨테이너 선적 불가 — Breakbulk 전용 선박 필요. 사유: ${reasons.join(" / ")}`};
 }
 
+// ── CALC ──
 function getVal(row,key){
   const col=fieldMap[key];if(!col)return"";
-  const idx=headers.indexOf(col);if(idx<0)return"";
+  const idx=headers.indexOf(col);
+  if(idx<0)return"";
   const val=row[idx];
   if(["length","width","height"].includes(key)&&val!==""&&val!==null&&val!==undefined){
     const unit=_unitMap[idx];
@@ -510,7 +675,9 @@ function runCalc(){
   rawData.forEach((row,i)=>{
     const item=getVal(row,"item")||`Item ${i+1}`;
     const qty=toNum(getVal(row,"qty"))||1;
-    const L=toNum(getVal(row,"length")),W=toNum(getVal(row,"width")),H=toNum(getVal(row,"height"));
+    const L=toNum(getVal(row,"length"));
+    const W=toNum(getVal(row,"width"));
+    const H=toNum(getVal(row,"height"));
     let cbm=toNum(getVal(row,"cbm"));
     const gw=toNum(getVal(row,"gw"));
     if(!cbm&&L&&W&&H)cbm=+(L/1000*W/1000*H/1000*qty).toFixed(4);
@@ -520,7 +687,8 @@ function runCalc(){
     if(issues.length>0){const cls=classifyOOG(L,W,H,gwT);c.fr=cls.type;c.frLabel=cls.label;c.remark=cls.remark;c.badgeClass=cls.badgeClass;oog.push(c);}
     else norm.push(c);
   });
-  const totalCBM=norm.reduce((s,c)=>s+c.cbm,0),totalGW=norm.reduce((s,c)=>s+c.gw,0);
+  const totalCBM=norm.reduce((s,c)=>s+c.cbm,0);
+  const totalGW=norm.reduce((s,c)=>s+c.gw,0);
   const plan=optimizePlan(totalCBM,totalGW);
   renderResults(norm,oog,plan,totalCBM,totalGW);
   setStep(3);
@@ -530,9 +698,10 @@ function optimizePlan(tCBM,tGW){
   const hc=CONTAINERS["40HC"],gp=CONTAINERS["40GP"],s=CONTAINERS["20GP"];
   let best=null,bs=Infinity;
   for(let a=0;a<=10;a++)for(let b=0;b<=6;b++)for(let c=0;c<=6;c++){
-    const cC=a*hc.maxCBM+b*gp.maxCBM+c*s.maxCBM,cG=a*hc.maxGW+b*gp.maxGW+c*s.maxGW,tot=a+b+c;
-    if(!tot)continue;
-    if(cC*.9>=tCBM&&cG>=tGW){const sc=tot*1000+(cC-tCBM);if(sc<bs){bs=sc;best={n40hc:a,n40gp:b,n20gp:c,capCBM:cC,capGW:cG,total:tot};}}
+    const cCBM=a*hc.maxCBM+b*gp.maxCBM+c*s.maxCBM;
+    const cGW=a*hc.maxGW+b*gp.maxGW+c*s.maxGW;
+    const tot=a+b+c;if(!tot)continue;
+    if(cCBM*.9>=tCBM&&cGW>=tGW){const sc=tot*1000+(cCBM-tCBM);if(sc<bs){bs=sc;best={n40hc:a,n40gp:b,n20gp:c,capCBM:cCBM,capGW:cGW,total:tot};}}
   }
   if(!best){const n=Math.ceil(tCBM/(hc.maxCBM*.9));best={n40hc:n,n40gp:0,n20gp:0,capCBM:n*hc.maxCBM,capGW:n*hc.maxGW,total:n};}
   return best;
@@ -540,46 +709,97 @@ function optimizePlan(tCBM,tGW){
 
 function renderResults(norm,oog,plan,totalCBM,totalGW){
   const all=[...norm,...oog];
-  const cbmR=(totalCBM/(plan.capCBM*.9)*100).toFixed(1);
-  let ph="";
-  ph+=`<div class="plan-card selected"><div class="plan-label">STANDARD PLAN A</div>`;
-  ph+=plan.n40hc?`<div class="plan-value">${plan.n40hc}<span class="plan-type"> × 40'HC</span></div>`:plan.n40gp?`<div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div>`:`<div class="plan-value">${plan.n20gp}<span class="plan-type"> × 20'GP</span></div>`;
-  ph+=`<div class="plan-rate">적재율: ${cbmR}%</div></div>`;
-  if(plan.n40hc&&plan.n40gp)ph+=`<div class="plan-card"><div class="plan-label">STANDARD PLAN B</div><div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div><div class="plan-rate">적재율: ${(totalCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)}%</div></div>`;
-  if(plan.n40hc>1)ph+=`<div class="plan-card"><div class="plan-label">HYBRID PLAN</div><div class="plan-value" style="font-size:20px">${Math.ceil(plan.n40hc/2)}×40'HC + ${plan.n40hc-Math.ceil(plan.n40hc/2)}×40'GP</div><div class="plan-rate">적재율: ${cbmR}%</div></div>`;
-  else ph+=`<div class="plan-card"><div class="plan-label">CBM 기준</div><div class="plan-value">${totalCBM.toFixed(1)}<span class="plan-type"> m³</span></div><div class="plan-rate">중량: ${(totalGW/1000).toFixed(1)}t</div></div>`;
-  ph+=`<div class="plan-3d" onclick="open3D()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>3D 시각화 보기</span></div>`;
-  document.getElementById("planGrid").innerHTML=ph;
+  const cbmRate=(totalCBM/(plan.capCBM*.9)*100).toFixed(1);
+  const gwRate=(totalGW/plan.capGW*100).toFixed(1);
 
+  // Plan cards
+  const planGrid=document.getElementById("planGrid");
+  let planHtml="";
+  const planA=plan.n40hc?`<span class="plan-value">${plan.n40hc}<span class="plan-type"> × 40'HC</span></span>`
+    :plan.n40gp?`<span class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></span>`
+    :`<span class="plan-value">${plan.n20gp}<span class="plan-type"> × 20'GP</span></span>`;
+  planHtml+=`<div class="plan-card selected">
+    <div class="plan-label">STANDARD PLAN A</div>
+    ${plan.n40hc?`<div class="plan-value">${plan.n40hc}<span class="plan-type"> × 40'HC</span></div>`:
+      plan.n40gp?`<div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div>`:
+      `<div class="plan-value">${plan.n20gp}<span class="plan-type"> × 20'GP</span></div>`}
+    <div class="plan-rate">적재율: ${cbmRate}%</div>
+  </div>`;
+  if(plan.n40hc&&plan.n40gp){
+    planHtml+=`<div class="plan-card">
+      <div class="plan-label">STANDARD PLAN B</div>
+      <div class="plan-value">${plan.n40gp}<span class="plan-type"> × 40'GP</span></div>
+      <div class="plan-rate">적재율: ${(totalCBM/(plan.n40gp*CONTAINERS["40GP"].maxCBM*.9)*100).toFixed(1)}%</div>
+    </div>`;
+  }
+  if(plan.n40hc>1){
+    planHtml+=`<div class="plan-card">
+      <div class="plan-label">HYBRID PLAN</div>
+      <div class="plan-value" style="font-size:20px">${Math.ceil(plan.n40hc/2)}×40'HC + ${plan.n40hc-Math.ceil(plan.n40hc/2)}×40'GP</div>
+      <div class="plan-rate">적재율: ${cbmRate}%</div>
+    </div>`;
+  } else {
+    planHtml+=`<div class="plan-card">
+      <div class="plan-label">CBM 기준</div>
+      <div class="plan-value">${totalCBM.toFixed(1)}<span class="plan-type"> m³</span></div>
+      <div class="plan-rate">중량: ${(totalGW/1000).toFixed(1)}t</div>
+    </div>`;
+  }
+  planHtml+=`<div class="plan-3d" onclick="open3D()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    <span>3D 시각화 보기</span>
+  </div>`;
+  document.getElementById("planGrid").innerHTML=planHtml;
   if(oog.length>0){
     document.getElementById("oogCard").style.display="";
-    document.getElementById("oogMeta").textContent="판정 기준: ① 일반 → ② OT → ③ 20'FR → ④ 40'FR → ⑤ 40'FR×2 → ⑥ BB";
-    document.getElementById("oogBody").innerHTML=oog.map(c=>`<tr class="oog-row">
-      <td class="item-name">${c.item}</td>
-      <td class="dim-val">${c.L.toLocaleString()}</td><td class="dim-val">${c.W.toLocaleString()}</td><td class="dim-val">${c.H.toLocaleString()}</td>
-      <td class="gw-val">${c.gw.toLocaleString()}</td>
-      <td>${c.issues.length>1?'<span class="oog-tag tag-multi">L, W, H</span>':c.issues.map(i=>`<span class="oog-tag ${i.cls}">${i.t}</span>`).join("")}</td>
-      <td><span class="badge ${c.badgeClass}">${c.frLabel}</span></td>
-      <td class="remark-cell ${c.type==="BREAKBULK"?"remark-red":""}">${c.remark}</td>
-    </tr>`).join("");
+    document.getElementById("oogMeta").textContent=`판정 기준: ① 일반 → ② OT → ③ 20'FR → ④ 40'FR → ⑤ 40'FR×2 → ⑥ BB`;
+    document.getElementById("oogBody").innerHTML=oog.map(c=>`
+      <tr class="oog-row">
+        <td class="item-name">${c.item}</td>
+        <td class="dim-val">${c.L.toLocaleString()}</td>
+        <td class="dim-val">${c.W.toLocaleString()}</td>
+        <td class="dim-val">${c.H.toLocaleString()}</td>
+        <td class="gw-val">${c.gw.toLocaleString()}</td>
+        <td>${c.issues.length>1
+          ?`<span class="oog-tag tag-multi">L, W, H, Weight</span>`
+          :c.issues.map(i=>`<span class="oog-tag ${i.cls}">${i.t}</span>`).join("")}</td>
+        <td><span class="badge ${c.badgeClass}">${c.frLabel}</span></td>
+        <td class="remark-cell ${c.type==="BREAKBULK"?"remark-red":""}">${c.remark}</td>
+      </tr>`).join("");
   }
 
+  // Detail table
   const assigned=assignContainers(norm,plan);
-  document.getElementById("detailMeta").style.display=norm.some(c=>!assigned[c.idx]||assigned[c.idx]==="배정 필요")||oog.length>0?"":"none";
-  document.getElementById("detailBody").innerHTML=all.map(c=>{
+  const hasDoubleCheck=norm.some(c=>!assigned[c.idx]||assigned[c.idx]==="배정 필요");
+  document.getElementById("detailMeta").style.display=hasDoubleCheck||oog.length>0?"":"none";
+
+  document.getElementById("detailBody").innerHTML=all.map((c,idx)=>{
     const isOog=c.issues&&c.issues.length>0;
-    let ac;
-    if(isOog){ac=`<span class="badge ${c.badgeClass}">${c.frLabel}</span>`;}
-    else{const a=assigned[c.idx];if(a&&a!=="배정 필요"){const m=a.match(/^(\S+)\s#(\d+)$/);ac=m?`<span class="cntr-chip">CNTR-${m[2]}</span> <span style="font-weight:600">${m[1]}</span>`:`<span class="badge badge-general">${a}</span>`;}else ac=`<span class="badge badge-bulk">배정 필요</span>`;}
+    let assignCell;
+    if(isOog){
+      assignCell=`<span class="badge ${c.badgeClass}">${c.frLabel}</span>`;
+    } else {
+      const a=assigned[c.idx];
+      if(a&&a!=="배정 필요"){
+        const m=a.match(/^(\S+)\s#(\d+)$/);
+        assignCell=m?`<span class="cntr-chip">CNTR-${m[2]}</span> <span style="font-weight:600">${m[1]}</span>`:`<span class="badge badge-general">${a}</span>`;
+      } else {
+        assignCell=`<span class="badge badge-bulk">배정 필요</span>`;
+      }
+    }
+    const remarkHtml=isOog?`<span class="${c.type==="BREAKBULK"?"remark-red":""}">${c.remark||"-"}</span>`:(c.issues&&c.issues.length===0?"-":"");
     return `<tr ${isOog?"class='oog-row'":""}>
       <td class="num-col">${String(c.idx).padStart(3,"0")}</td>
-      <td class="item-name">${c.item}</td><td class="qty-val">${c.qty}</td>
+      <td class="item-name">${c.item}</td>
+      <td class="qty-val">${c.qty}</td>
       <td class="dim-val">${c.L&&c.W&&c.H?`${c.L.toLocaleString()} × ${c.W.toLocaleString()} × ${c.H.toLocaleString()}`:"-"}</td>
-      <td class="cbm-val">${c.cbm.toFixed(2)}</td><td class="gw-val">${c.gw.toLocaleString()}</td>
-      <td>${ac}</td>
-      <td class="remark-cell ${isOog&&c.type==="BREAKBULK"?"remark-red":""}">${isOog?c.remark:"-"}</td>
+      <td class="cbm-val">${c.cbm.toFixed(2)}</td>
+      <td class="gw-val">${c.gw.toLocaleString()}</td>
+      <td>${assignCell}</td>
+      <td class="remark-cell">${remarkHtml||"-"}</td>
     </tr>`;
   }).join("");
+
   window._exportData={all,oog,plan,totalCBM:totalCBM,totalGW:totalGW,assigned:assigned};
 }
 
@@ -589,18 +809,19 @@ function assignContainers(norm,plan){
   if(plan.n40gp)for(let i=0;i<plan.n40gp;i++)slots.push({type:"40GP",rem:CONTAINERS["40GP"].maxCBM*.9,gwRem:CONTAINERS["40GP"].maxGW});
   if(plan.n20gp)for(let i=0;i<plan.n20gp;i++)slots.push({type:"20GP",rem:CONTAINERS["20GP"].maxCBM*.9,gwRem:CONTAINERS["20GP"].maxGW});
   [...norm].sort((a,b)=>b.cbm-a.cbm).forEach(c=>{
-    for(const slot of slots){if(slot.rem>=c.cbm&&slot.gwRem>=c.gw){slot.rem-=c.cbm;slot.gwRem-=c.gw;assigned[c.idx]=`${slot.type} #${slots.indexOf(slot)+1}`;break;}}
+    for(const slot of slots){
+      if(slot.rem>=c.cbm&&slot.gwRem>=c.gw){slot.rem-=c.cbm;slot.gwRem-=c.gw;assigned[c.idx]=`${slot.type} #${slots.indexOf(slot)+1}`;break;}
+    }
     if(!assigned[c.idx])assigned[c.idx]="배정 필요";
   });
   return assigned;
 }
 
-// ── 엑셀 다운로드: XLSX.write + Blob 방식 ──
 function exportExcel(){
   if(!window._exportData){alert("먼저 CLP 계산을 실행해주세요.");return;}
   const ed=window._exportData;
-  const all=ed.all||[],plan=ed.plan||{},assigned=ed.assigned||{};
-  const totalCBM=ed.totalCBM||0,totalGW=ed.totalGW||0;
+  const all=ed.all||[], plan=ed.plan||{}, assigned=ed.assigned||{};
+  const totalCBM=ed.totalCBM||0, totalGW=ed.totalGW||0;
   try{
     const wb=XLSX.utils.book_new();
     const summary=[
@@ -621,7 +842,8 @@ function exportExcel(){
     all.forEach(c=>{
       const isOog=!!(c.issues&&c.issues.length>0);
       const issues=c.issues||[];
-      d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",+c.cbm.toFixed(3),c.gw,
+      d.push([c.idx,c.item,c.qty,c.L||"",c.W||"",c.H||"",
+        +c.cbm.toFixed(3),c.gw,
         isOog?"-":(assigned[c.idx]||"-"),
         isOog?(c.frLabel||"-"):"-",
         isOog?issues.map(i=>i.t||"").join(", "):"-",
@@ -629,6 +851,7 @@ function exportExcel(){
       ]);
     });
     XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(d),"Detail");
+    // XLSX.write + Blob 방식 (XLSX.writeFile 대신)
     const wbout=XLSX.write(wb,{bookType:"xlsx",type:"array"});
     const blob=new Blob([wbout],{type:"application/octet-stream"});
     const url=URL.createObjectURL(blob);
@@ -651,6 +874,7 @@ function resetAll(){
   setStep(1);window.scrollTo(0,0);
 }
 
+// ── 3D VIEWER ─────────────────────────────────────────────
 let _three=null;
 
 function open3D(){
@@ -662,91 +886,242 @@ function open3D(){
 function close3D(){
   document.getElementById("modal3d").style.display="none";
   document.body.style.overflow="";
-  if(_three){cancelAnimationFrame(_three.raf);_three.renderer.dispose();_three=null;}
+  if(_three){
+    cancelAnimationFrame(_three.raf);
+    _three.renderer.dispose();
+    _three=null;
+  }
 }
 document.getElementById("modal3d").addEventListener("click",e=>{if(e.target===e.currentTarget)close3D();});
 
 function init3D(){
-  const{all,oog,assigned}=window._exportData;
+  const {all,oog,plan,assigned}=window._exportData;
+
+  // Build per-container slot groups
   const slots={};
-  all.filter(c=>!(c.issues&&c.issues.length>0)).forEach(c=>{const k=assigned[c.idx]||"미배정";if(!slots[k])slots[k]=[];slots[k].push(c);});
-  oog.forEach(c=>{const k="OOG: "+c.frLabel;if(!slots[k])slots[k]=[];slots[k].push(c);});
-  const keys=Object.keys(slots);
+  // normal cargo
+  all.filter(c=>!(c.issues&&c.issues.length>0)).forEach(c=>{
+    const key=assigned[c.idx]||"미배정";
+    if(!slots[key])slots[key]=[];
+    slots[key].push(c);
+  });
+  // OOG goes in separate virtual slot
+  oog.forEach(c=>{
+    const key="OOG: "+c.frLabel;
+    if(!slots[key])slots[key]=[];
+    slots[key].push(c);
+  });
+
+  const slotKeys=Object.keys(slots);
+
+  // Build tab UI
   const tabsEl=document.getElementById("m3d-tabs");
   tabsEl.innerHTML="";
-  keys.forEach((k,i)=>{
+  slotKeys.forEach((k,i)=>{
     const btn=document.createElement("button");
     btn.textContent=k;
-    btn.style.cssText=`padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:${i===0?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)"};color:#fff;margin-bottom:2px;`;
-    btn.onclick=()=>{tabsEl.querySelectorAll("button").forEach((b,j)=>{b.style.background=j===i?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)";});render3DSlot(k,slots[k]);};
+    btn.style.cssText=`padding:4px 10px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:${i===0?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)"};color:#fff;`;
+    btn.onclick=()=>{
+      tabsEl.querySelectorAll("button").forEach((b,j)=>{
+        b.style.background=j===i?"rgba(227,6,19,.8)":"rgba(255,255,255,.07)";
+      });
+      render3DSlot(k,slots[k]);
+    };
     tabsEl.appendChild(btn);
   });
-  render3DSlot(keys[0],slots[keys[0]]);
+
+  render3DSlot(slotKeys[0],slots[slotKeys[0]]);
 }
 
 function render3DSlot(slotKey,cargos){
-  if(_three){cancelAnimationFrame(_three.raf);_three.renderer.dispose();_three=null;}
-  const THREE=window.THREE;if(!THREE)return;
+  if(_three){
+    cancelAnimationFrame(_three.raf);
+    _three.renderer.dispose();
+    _three=null;
+  }
+
+  const THREE=window.THREE;
+  if(!THREE){
+    document.getElementById("canvas3d").parentElement.innerHTML+='<div style="color:#EF4444;padding:20px;font-size:13px;text-align:center;">Three.js 로딩 실패. 인터넷 연결을 확인해주세요.</div>';
+    return;
+  }
+
   const canvas=document.getElementById("canvas3d");
-  const w=canvas.parentElement.offsetWidth||800,h=canvas.parentElement.offsetHeight||480;
-  canvas.width=w;canvas.height=h;
+  const w=canvas.parentElement.offsetWidth||800;
+  const h=canvas.parentElement.offsetHeight||480;
+  canvas.width=w; canvas.height=h;
+
+  // Determine container dims
+  const isOOGSlot=slotKey.startsWith("OOG:");
   let ctype="40HC";
   if(slotKey.includes("40HC"))ctype="40HC";
   else if(slotKey.includes("40GP"))ctype="40GP";
   else if(slotKey.includes("20GP"))ctype="20GP";
   else if(slotKey.includes("FR"))ctype="40FR";
-  const cSpec=CONTAINERS[ctype]||{L:12030,W:2350,H:2695};
-  const CL=cSpec.L/1000,CW=cSpec.W/1000,CH=cSpec.H/1000;
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-  renderer.setSize(w,h);renderer.setClearColor(0x0d1b2a,1);renderer.shadowMap.enabled=true;
+
+  const cSpec=window._exportData&&CONTAINERS[ctype]||{L:12030,W:2350,H:2695};
+  const CL=cSpec.L/1000, CW=cSpec.W/1000, CH=cSpec.H/1000; // metres
+
+  // Scene
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
+  renderer.setSize(w,h);
+  renderer.setClearColor(0x0d1b2a,1);
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+
   const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(50,w/h,.01,500);
-  camera.position.set(CL*1.2,CH*2.2,CW*3.5);camera.lookAt(CL/2,CH/2,CW/2);
-  scene.add(new THREE.AmbientLight(0xffffff,.55));
-  const sun=new THREE.DirectionalLight(0xffffff,.9);sun.position.set(CL*2,CH*3,CW*2);sun.castShadow=true;scene.add(sun);
-  const ce=new THREE.EdgesGeometry(new THREE.BoxGeometry(CL,CH,CW));
-  const cl=new THREE.LineSegments(ce,new THREE.LineBasicMaterial({color:0x334155}));
-  cl.position.set(CL/2,CH/2,CW/2);scene.add(cl);
-  const fl=new THREE.Mesh(new THREE.PlaneGeometry(CL,CW),new THREE.MeshStandardMaterial({color:0x1e293b,roughness:.9}));
-  fl.rotation.x=-Math.PI/2;fl.position.set(CL/2,.001,CW/2);fl.receiveShadow=true;scene.add(fl);
-  const wm=new THREE.MeshStandardMaterial({color:0x1e3a5f,transparent:true,opacity:.1});
-  [[CL,CH,.02,CL/2,CH/2,CW],[CL,CH,.02,CL/2,CH/2,0],[.02,CH,CW,0,CH/2,CW/2],[.02,CH,CW,CL,CH/2,CW/2]].forEach(([lx,ly,lz,px,py,pz])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(lx,ly,lz),wm);m.position.set(px,py,pz);scene.add(m);});
+  const camera=new THREE.PerspectiveCamera(50,w/h,0.01,500);
+  camera.position.set(CL*1.2, CH*2.2, CW*3.5);
+  camera.lookAt(CL/2, CH/2, CW/2);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff,0.55));
+  const sun=new THREE.DirectionalLight(0xffffff,0.9);
+  sun.position.set(CL*2,CH*3,CW*2);
+  sun.castShadow=true;
+  sun.shadow.mapSize.set(1024,1024);
+  scene.add(sun);
+  scene.add(new THREE.DirectionalLight(0x4488ff,0.3).position.set(-CL,0,-CW));
+
+  // Container wireframe
+  const contGeo=new THREE.BoxGeometry(CL,CH,CW);
+  const contEdges=new THREE.EdgesGeometry(contGeo);
+  const contLine=new THREE.LineSegments(contEdges,new THREE.LineBasicMaterial({color:0x334155,linewidth:1.5}));
+  contLine.position.set(CL/2,CH/2,CW/2);
+  scene.add(contLine);
+
+  // Container floor
+  const floorGeo=new THREE.PlaneGeometry(CL,CW);
+  const floorMat=new THREE.MeshStandardMaterial({color:0x1e293b,roughness:.9});
+  const floor=new THREE.Mesh(floorGeo,floorMat);
+  floor.rotation.x=-Math.PI/2;
+  floor.position.set(CL/2,0.001,CW/2);
+  floor.receiveShadow=true;
+  scene.add(floor);
+
+  // Container walls (semi-transparent)
+  const wallMat=new THREE.MeshStandardMaterial({color:0x1e3a5f,transparent:true,opacity:.12,roughness:.8});
+  [[CL,CH,0.02,CL/2,CH/2,CW],[CL,CH,0.02,CL/2,CH/2,0],[0.02,CH,CW,0,CH/2,CW/2],[0.02,CH,CW,CL,CH/2,CW/2]].forEach(([lx,ly,lz,px,py,pz])=>{
+    const m=new THREE.Mesh(new THREE.BoxGeometry(lx,ly,lz),wallMat);
+    m.position.set(px,py,pz);
+    scene.add(m);
+  });
+
+  // Color palette per cargo
   const palette=[0xE30613,0x0059a8,0x10B981,0xF59E0B,0x8B5CF6,0xEC4899,0x06B6D4,0x84CC16,0xF97316,0x6366F1];
-  const placed=[];let cx=0,cz=0,rowMaxZ=0;const PAD=.02;
-  [...cargos].sort((a,b)=>b.cbm-a.cbm).forEach((c,ci)=>{
-    const bL=(c.L||500)/1000,bW=(c.W||500)/1000,bH=(c.H||500)/1000;
-    if(cx+bL>CL+.1){cx=0;cz+=rowMaxZ+PAD;rowMaxZ=0;}
-    if(cz+bW>CW+.1){cx=0;cz=0;}
+
+  // Place cargo boxes using simple stack-fill
+  let placedBoxes=[];
+  let cx=0, cz=0, rowMaxZ=0, cy=0;
+  const PAD=0.02; // gap between boxes in metres
+
+  // Sort by volume desc for better packing feel
+  const sorted=[...cargos].sort((a,b)=>b.cbm-a.cbm);
+
+  sorted.forEach((c,ci)=>{
+    const bL=(c.L||500)/1000, bW=(c.W||500)/1000, bH=(c.H||500)/1000;
+    // Simple row packing: fill X, then new row in Z
+    if(cx+bL>CL+0.1){cx=0; cz+=rowMaxZ+PAD; rowMaxZ=0; cy=0;}
+    if(cz+bW>CW+0.1){cx=0;cz=0;cy=0;} // overflow fallback
+
     const color=palette[ci%palette.length];
-    const box=new THREE.Mesh(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD),new THREE.MeshStandardMaterial({color,roughness:.6,transparent:true,opacity:.85}));
-    box.position.set(cx+bL/2,bH/2,cz+bW/2);box.castShadow=true;scene.add(box);
-    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.2}));
-    edges.position.copy(box.position);scene.add(edges);
-    placed.push({item:c.item,color});cx+=bL+PAD;if(bW>rowMaxZ)rowMaxZ=bW;
+    const mat=new THREE.MeshStandardMaterial({color,roughness:.6,metalness:.1,transparent:true,opacity:.85});
+    const box=new THREE.Mesh(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD),mat);
+    box.position.set(cx+bL/2, cy+bH/2, cz+bW/2);
+    box.castShadow=true;
+    box.receiveShadow=true;
+    scene.add(box);
+
+    // Edge highlight
+    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(bL-PAD,bH-PAD,bW-PAD)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.25}));
+    edges.position.copy(box.position);
+    scene.add(edges);
+
+    placedBoxes.push({box,edges,item:c.item,color});
+    cx+=bL+PAD;
+    if(bW>rowMaxZ)rowMaxZ=bW;
   });
-  document.getElementById("m3d-legend").innerHTML=placed.slice(0,8).map(b=>`<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#${b.color.toString(16).padStart(6,"0")};flex-shrink:0"></span>${b.item}</div>`).join("")+(placed.length>8?`<div style="color:#64748B">+ ${placed.length-8}개 더</div>`:"");
-  const tc=cargos.reduce((s,c)=>s+c.cbm,0),tg=cargos.reduce((s,c)=>s+c.gw,0);
-  document.getElementById("m3d-stats").innerHTML=`<div>${slotKey}</div><div>화물 ${cargos.length}건</div><div>CBM ${tc.toFixed(2)} m³</div><div>G.W ${tg.toLocaleString()} kg</div>`;
-  document.getElementById("m3d-title").textContent=`${CL}m × ${CW}m × ${CH}m`;
-  let isDrag=false,isRight=false,px=0,py=0,theta=.4,phi=.9,radius=Math.sqrt(CL*CL+CW*CW)*2.2;
+
+  // Legend
+  const legendEl=document.getElementById("m3d-legend");
+  legendEl.innerHTML=placedBoxes.slice(0,8).map(b=>`<div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;border-radius:2px;background:#${b.color.toString(16).padStart(6,'0')};flex-shrink:0"></span>${b.item}</div>`).join("")+(placedBoxes.length>8?`<div style="color:#64748B">+ ${placedBoxes.length-8}개 더</div>`:"");
+
+  // Stats
+  const totalCBM=cargos.reduce((s,c)=>s+c.cbm,0);
+  const totalGW=cargos.reduce((s,c)=>s+c.gw,0);
+  document.getElementById("m3d-stats").innerHTML=
+    `<div>${slotKey}</div>`+
+    `<div>화물 ${cargos.length}건</div>`+
+    `<div>CBM ${totalCBM.toFixed(2)} m³</div>`+
+    `<div>G.W ${totalGW.toLocaleString()} kg</div>`;
+
+  document.getElementById("m3d-title").textContent=`${cSpec.L/1000}m × ${cSpec.W/1000}m × ${cSpec.H/1000}m`;
+
+  // Orbit controls (manual)
+  let isDragging=false,isRightDrag=false;
+  let prevX=0,prevY=0;
+  let theta=0.4,phi=0.9,radius=Math.sqrt(CL*CL+CW*CW)*2.2;
   const target=new THREE.Vector3(CL/2,CH/2,CW/2);
-  function uc(){camera.position.set(target.x+radius*Math.sin(phi)*Math.sin(theta),target.y+radius*Math.cos(phi),target.z+radius*Math.sin(phi)*Math.cos(theta));camera.lookAt(target);}
-  uc();
-  canvas.addEventListener("mousedown",e=>{isDrag=true;isRight=e.button===2;px=e.clientX;py=e.clientY;});
+
+  function updateCamera(){
+    camera.position.set(
+      target.x+radius*Math.sin(phi)*Math.sin(theta),
+      target.y+radius*Math.cos(phi),
+      target.z+radius*Math.sin(phi)*Math.cos(theta)
+    );
+    camera.lookAt(target);
+  }
+  updateCamera();
+
+  canvas.addEventListener("mousedown",e=>{isDragging=true;isRightDrag=e.button===2;prevX=e.clientX;prevY=e.clientY;});
   canvas.addEventListener("contextmenu",e=>e.preventDefault());
-  window.addEventListener("mouseup",()=>isDrag=false);
+  window.addEventListener("mouseup",()=>isDragging=false);
   window.addEventListener("mousemove",e=>{
-    if(!isDrag)return;
-    const dx=(e.clientX-px)*.008,dy=(e.clientY-py)*.008;
-    if(isRight){target.x-=dx*radius*.5;target.y+=dy*radius*.5;}
-    else{theta-=dx;phi=Math.max(.05,Math.min(Math.PI-.05,phi+dy));}
-    px=e.clientX;py=e.clientY;uc();
+    if(!isDragging)return;
+    const dx=(e.clientX-prevX)*0.008, dy=(e.clientY-prevY)*0.008;
+    if(isRightDrag){target.x-=dx*radius*.5;target.y+=dy*radius*.5;}
+    else{theta-=dx;phi=Math.max(0.05,Math.min(Math.PI-.05,phi+dy));}
+    prevX=e.clientX;prevY=e.clientY;
+    updateCamera();
   });
-  canvas.addEventListener("wheel",e=>{radius=Math.max(.5,Math.min(50,radius+e.deltaY*.012));uc();e.preventDefault();},{passive:false});
-  const ro=new ResizeObserver(()=>{const nw=canvas.parentElement.offsetWidth||800,nh=canvas.parentElement.offsetHeight||480;renderer.setSize(nw,nh);camera.aspect=nw/nh;camera.updateProjectionMatrix();});
+  canvas.addEventListener("wheel",e=>{radius=Math.max(0.5,Math.min(50,radius+e.deltaY*0.012));updateCamera();e.preventDefault();},{passive:false});
+
+  // Touch
+  let lastTouches=null;
+  canvas.addEventListener("touchstart",e=>{lastTouches=e.touches;},{passive:true});
+  canvas.addEventListener("touchmove",e=>{
+    if(e.touches.length===1&&lastTouches?.length===1){
+      const dx=(e.touches[0].clientX-lastTouches[0].clientX)*0.008;
+      const dy=(e.touches[0].clientY-lastTouches[0].clientY)*0.008;
+      theta-=dx;phi=Math.max(0.05,Math.min(Math.PI-.05,phi+dy));
+      updateCamera();
+    } else if(e.touches.length===2&&lastTouches?.length===2){
+      const d0=Math.hypot(lastTouches[0].clientX-lastTouches[1].clientX,lastTouches[0].clientY-lastTouches[1].clientY);
+      const d1=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+      radius=Math.max(0.5,Math.min(50,radius*(d0/d1)));
+      updateCamera();
+    }
+    lastTouches=e.touches;
+    e.preventDefault();
+  },{passive:false});
+
+  // Resize
+  const ro=new ResizeObserver(()=>{
+    const pw=canvas.parentElement.offsetWidth||800;
+    const ph=canvas.parentElement.offsetHeight||480;
+    renderer.setSize(pw,ph);
+    camera.aspect=pw/ph;camera.updateProjectionMatrix();
+  });
   ro.observe(canvas.parentElement);
-  function animate(){const raf=requestAnimationFrame(animate);renderer.render(scene,camera);if(_three)_three.raf=raf;}
-  _three={renderer,raf:null};animate();
+
+  // Animate
+  function animate(){
+    const raf=requestAnimationFrame(animate);
+    renderer.render(scene,camera);
+    if(_three)_three.raf=raf;
+  }
+  _three={renderer,raf:null};
+  animate();
 }
 </script>
 </body>
